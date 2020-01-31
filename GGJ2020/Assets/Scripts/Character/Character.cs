@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     Item inventory;
 
     [SerializeField]
-    Rigidbody rb;
+    protected Rigidbody rb;
 
     Vector2 additiveSpeed;
 

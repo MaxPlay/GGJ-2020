@@ -6,6 +6,17 @@ public class FletchingStation : Interactable
 {
     public override Interactable Interact(Player player)
     {
+        Debug.Log("LOL");
         return this;
+    }
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

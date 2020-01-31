@@ -35,19 +35,6 @@ public class Player : Character
         previousState = currentState;
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if(!didDebug)
-        {
-            Debug.Log("Trigger With: " + other.name);
-            didDebug = true;
-        }
-        if (other.tag == TagPrefix.InteractableTag)
-        {
-            Interactable interactable = other.GetComponent<Interactable>();
-        }
-    }
-
     private void HandleNextState()
     {
         if(previousState != currentState)
@@ -93,8 +80,34 @@ public class Player : Character
 
     }
 
+    private void HandleInteractions()
+    {
+        if(Interactable.Instances != null)
+        {
+            int currentClosest = -1;
+            for (int i = 0; i < Interactable.Instances.Count; i++)
+            {
+                if(Interactable.Instances[i].InteractionRange * Interactable.Instances[i].InteractionRange > Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position))
+                {
+                    if(currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
+                    {
+                        currentClosest = i;
+                    }
+                }
+            }
+            if(currentClosest >= 0 && currentClosest < Interactable.Instances.Count)
+            {
+                Interactable.Instances[currentClosest].Interact(this);
+            }
+        }
+    }
+
     private PlayerStates UpdateDefaultState()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            HandleInteractions();
+        }
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Move(Vector2.up);

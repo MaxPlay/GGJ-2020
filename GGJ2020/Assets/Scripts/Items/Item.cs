@@ -8,4 +8,14 @@ public class Item : Interactable
     {
         return this;
     }
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
 }
