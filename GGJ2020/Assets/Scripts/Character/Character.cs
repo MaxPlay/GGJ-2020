@@ -8,11 +8,19 @@ public class Character : MonoBehaviour
     Item inventory;
 
     [SerializeField]
-    Rigidbody rb;
+    protected Rigidbody rb;
+
+    Vector2 additiveSpeed;
+
+    protected void Update()
+    {
+        rb.velocity = MathUtils.VectorLerp(rb.velocity, Vector3.right * additiveSpeed.x + Vector3.forward * additiveSpeed.y, 0.5f);
+        additiveSpeed = Vector2.zero;
+    }
 
     protected void Move(Vector2 speed)
     {
-        rb.velocity = Vector3.right * speed.x + Vector3.forward * speed.y;
+        additiveSpeed += speed;
     }
 
     private void Interact()

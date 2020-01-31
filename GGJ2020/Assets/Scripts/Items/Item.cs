@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public override Interactable Interact(Player player)
     {
-        
+        return this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Start()
     {
-        
+        base.Start();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

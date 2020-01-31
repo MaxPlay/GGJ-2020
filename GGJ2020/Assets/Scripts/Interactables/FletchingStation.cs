@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class FletchingStation : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public override Interactable Interact(Player player)
     {
-        
+        Debug.Log("LOL");
+        return this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Start()
     {
-        
+        base.Start();
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
