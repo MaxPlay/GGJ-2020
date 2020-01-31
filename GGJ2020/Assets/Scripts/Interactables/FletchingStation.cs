@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class FletchingStation : Interactable
 {
-
-
     // Start is called before the first frame update
     void Start()
     {
