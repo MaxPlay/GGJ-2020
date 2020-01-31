@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
+    protected bool isBeingUsed;
 
-    private void Interact()
-    {
-
-    }
+    abstract public Interactable Interact(Player player);
 }
