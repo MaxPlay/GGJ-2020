@@ -23,6 +23,9 @@ public class GameState : ScriptableObject
         {
             objectiveSpawnTimer += GameManager.Instance.Settings.ObjectiveFrequency;
             objectiveQueue.AddRandom();
+            Debug.Log(objectiveQueue[objectiveQueue.Count - 1]);
         }
+
+        objectiveSpawnTimer -= Time.deltaTime;
     }
 }

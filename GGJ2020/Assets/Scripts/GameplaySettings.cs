@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class GameplaySettings
+[CreateAssetMenu(menuName = "Data/Gameplay Settings")]
+public class GameplaySettings : ScriptableObject
 {
     [SerializeField]
     private int maxObjectives;
