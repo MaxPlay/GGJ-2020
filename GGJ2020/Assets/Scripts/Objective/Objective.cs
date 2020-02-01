@@ -8,6 +8,8 @@ public class Objective
 
     public bool Smith { get; set; }
 
+    public Customer Owner { get; set; }
+
     public static Objective Generate()
     {
         return new Objective()

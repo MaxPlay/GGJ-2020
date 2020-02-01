@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
-public class ObjectiveQueue : IReadOnlyList<Objective>
+public class ObjectiveQueue
 {
     List<Objective> objectives = new List<Objective>();
 
@@ -18,10 +19,17 @@ public class ObjectiveQueue : IReadOnlyList<Objective>
         if(objectives.Count < MaxObjectives)
         {
             objectives.Add(objective);
+            Customer customer = UnityEngine.Object.Instantiate(GameManager.Instance.Prefabs.Customer);
+            objective.Owner = customer;
+            customer.Initialize(objective);
         }
     }
 
-    IEnumerator IEnumerable.GetEnumerator() => objectives.GetEnumerator();
+    public Objective LastObjective()
+    {
+        if (Count == 0)
+            return null;
 
-    public IEnumerator<Objective> GetEnumerator() => objectives.GetEnumerator();
+        return objectives.Last();
+    }
 }
