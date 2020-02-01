@@ -12,11 +12,13 @@ public class Objective
 
     public static Objective Generate()
     {
+        int data = GameManager.Instance.Random.Next(1, 8);
+
         return new Objective()
         {
-            Grind = GameManager.Instance.Random.Next(2) > 0,
-            Grip = GameManager.Instance.Random.Next(2) > 0,
-            Smith = GameManager.Instance.Random.Next(2) > 0
+            Grind = (data & 0b001) == 0b001,
+            Grip = (data & 0b010) == 0b010,
+            Smith = (data & 0b100) == 0b100
         };
     }
 
@@ -24,4 +26,5 @@ public class Objective
     {
         return $"Objective requires Grind = {Grind}, Grip = {Grip}, Smith = {Smith}";
     }
+    
 }

@@ -4,13 +4,16 @@ using UnityEngine.Events;
 
 public class GameState : ScriptableObject
 {
-    ObjectiveQueue objectiveQueue;
+    CustomerLine customerLine;
 
     float objectiveSpawnTimer;
 
+    public ObjectiveQueue ObjectiveQueue { get; private set; }
+
     public void Start()
     {
-        objectiveQueue = new ObjectiveQueue();
+        customerLine = FindObjectOfType<CustomerLine>();
+        ObjectiveQueue = new ObjectiveQueue(GameManager.Instance.Settings.MaxObjectives, customerLine);
     }
 
     public void End()
@@ -23,7 +26,7 @@ public class GameState : ScriptableObject
         if(objectiveSpawnTimer <= 0)
         {
             objectiveSpawnTimer += GameManager.Instance.Settings.ObjectiveFrequency;
-            objectiveQueue.AddRandom();
+            ObjectiveQueue.AddRandom();
         }
 
         objectiveSpawnTimer -= Time.deltaTime;
