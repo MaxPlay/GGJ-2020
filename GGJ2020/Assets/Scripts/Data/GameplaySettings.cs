@@ -74,7 +74,6 @@ public class GameplaySettings : ScriptableObject
     private int ratioPointsCustomerDiappointed = 1;
 
     public int RatioPointsCustomerDiappointed => ratioPointsCustomerDiappointed;
-    public float CustomerMoveTime => customerMoveTime;
 
     #region Sword Settings
 
