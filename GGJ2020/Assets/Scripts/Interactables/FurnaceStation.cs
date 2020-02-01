@@ -31,7 +31,7 @@ public class FurnaceStation : Interactable
     {
         if(character.Inventory is Sword && inventory == null)
         {
-            inventory = (character as Player).PlaceSwordInFurncae();
+            inventory = (character as Player).PlaceSwordInWorkstation();
             inventory.transform.parent = dropParent;
             inventory.transform.localPosition = Vector3.zero;
         }

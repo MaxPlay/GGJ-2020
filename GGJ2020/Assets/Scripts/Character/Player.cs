@@ -10,6 +10,7 @@ public enum PlayerStates
     Fletching = 1,
     Heating = 2,
     Smithing = 3,
+    Attaching = 4,
 }
 
 public class Player : Character
@@ -48,6 +49,9 @@ public class Player : Character
             case PlayerStates.Smithing:
                 currentState = UpdateSmithingState();
                 break;
+            case PlayerStates.Attaching:
+                currentState = UpdateAttachingState();
+                break;
         }
         HandleNextState();
 
@@ -73,6 +77,9 @@ public class Player : Character
                 case PlayerStates.Smithing:
                     EnterSmithingState();
                     break;
+                case PlayerStates.Attaching:
+                    EnterAttachingState();
+                    break;
             }
             switch (previousState)
             {
@@ -87,6 +94,9 @@ public class Player : Character
                     break;
                 case PlayerStates.Smithing:
                     ExitSmithingState();
+                    break;
+                case PlayerStates.Attaching:
+                    ExitAttachingState();
                     break;
             }
         }
@@ -121,6 +131,22 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Smithing State");
         transform.position = memorizedPosition;
+    }
+
+    private void ExitAttachingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Woodworking State");
+        transform.position = memorizedPosition;
+    }
+
+    private void EnterAttachingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Enter Smithing State");
+        (currentStation as WoodworkStation).ResetProgress();
+        memorizedPosition = transform.position;
+        transform.position = (currentStation as WoodworkStation).WorkingPosition;
     }
 
     private void EnterSmithingState()
@@ -182,7 +208,7 @@ public class Player : Character
         return currentState;
     }
 
-    public Sword PlaceSwordInFurncae()
+    public Sword PlaceSwordInWorkstation()
     {
         if(inventory is Sword)
         {
@@ -190,6 +216,18 @@ public class Player : Character
             inventory.gameObject.transform.parent = null;
             inventory = null;
             return sword;
+        }
+        return null;
+    }
+
+    public Handle PlaceHandleInObject()
+    {
+        if (inventory is Handle)
+        {
+            Handle handle = inventory as Handle;
+            inventory.gameObject.transform.parent = null;
+            inventory = null;
+            return handle;
         }
         return null;
     }
@@ -211,6 +249,10 @@ public class Player : Character
         else if (interactable is SmithingStation && inventory != null && inventory is Sword)
         {
             return PlayerStates.Smithing;
+        }
+        else if(interactable is WoodworkStation && (interactable as WoodworkStation).HasBothItems)
+        {
+            return PlayerStates.Attaching;
         }
 
         return PlayerStates.Default;
@@ -239,6 +281,19 @@ public class Player : Character
             Move(Vector2.down * speeds.y);
         }
         return PlayerStates.Default;
+    }
+
+    private PlayerStates UpdateAttachingState()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+        if((currentStation as WoodworkStation).WorkOnSword())
+        {
+            return PlayerStates.Default;
+        }
+        return PlayerStates.Attaching;
     }
 
     private PlayerStates UpdateSmithingState()
