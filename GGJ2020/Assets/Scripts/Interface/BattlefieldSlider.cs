@@ -5,44 +5,61 @@ using UnityEngine.UI;
 
 public class BattlefieldSlider : MonoBehaviour {
 
-    [SerializeField]
-    int initialScore = 10;
-    [SerializeField]
-    int scoreWin = 50;
-    [SerializeField]
-    int scoreLose = 0;
-
-        [SerializeField]
-    int score = 10;
-
     private Slider slider;
 
     [SerializeField]
     private GameObject customerLine;
 
-    [SerializeField]
-    int ratioCustomerWaiting = 1;
+    //Copies from GameManager
 
     [SerializeField]
-    int ratioCustomerSatisfied = 1;
+    float secondsPerRound;
 
+    [SerializeField]
+    int customersWithoutPenalty;
+
+    [SerializeField]
+    int penaltyEndOfRoundPerCustomer;
+
+    [SerializeField]
+    int ratioPointsCustomerSatisfied;
+
+    [SerializeField]
+    int ratioPointsCustomerImpressed;
+
+    [SerializeField]
+    int ratioPointsCustomerDiappointed;
+
+    //inner logic
+
+    private int gameScore;
+
+    private int scoreLost;
+
+    private int scoreWon;
 
     void Start () {
 
         slider = GetComponent<Slider> ();
 
-        // SetupScoreRange (scoreLose, scoreWin, initialScore);
-        // SetScore (initialScore);
+        SetupScoreRange ();
 
     }
 
-    public void SetupScoreRange (int min, int max, int start) {
+    public void SetupScoreRange () {
 
-        slider.minValue = min;
+        slider.minValue = GameManager.Instance.GetComponent<GameplaySettings> ().ScoreLose;
 
-        slider.maxValue = max;
+        slider.maxValue = GameManager.Instance.GetComponent<GameplaySettings> ().ScoreWin;
 
-        slider.value = start;
+        slider.value = GameManager.Instance.GetComponent<GameplaySettings> ().Score;
+
+        gameScore = GameManager.Instance.GetComponent<GameplaySettings> ().Score;
+
+        scoreWon = GameManager.Instance.GetComponent<GameplaySettings> ().ScoreWin;
+
+        scoreLost = GameManager.Instance.GetComponent<GameplaySettings> ().ScoreLose;
+
     }
 
     public void SetScore (int score) {
@@ -51,33 +68,68 @@ public class BattlefieldSlider : MonoBehaviour {
 
     }
 
+    //**********************************************************************************************
+    //**********************************************************************************************
+    // Game Over Stuff
+    //**********************************************************************************************
+    //**********************************************************************************************
 
+    public void LooseGame () { Debug.Log ("DUMMY: YOU LOST YOU IDIOT!"); }
 
+    public void WinGame () { Debug.Log ("DUMMY: YOU WON YOU ARROGANT PRICK!"); }
 
+    public int CountCustomers () {
 
+        int childCount = 0;
 
-//**********************************************************************************************
-//**********************************************************************************************
-// Game Over Stuff
-//**********************************************************************************************
-//**********************************************************************************************
-    public int CountCustomers() {
+        foreach (Transform b in customerLine.transform) {
+            //        Debug.Log("Child: "+b);
+            childCount++;
+            //            childCount += CountChildren(b);
+        }
+        return childCount;
 
-         int childCount = 0;
+    }
 
-         foreach (Transform b in customerLine.transform)
-         {
-     //        Debug.Log("Child: "+b);
-             childCount ++;
-//            childCount += CountChildren(b);
-         }
-         return childCount;
+    public void InitAndStartBattlePointLoop () {
 
-}
+        secondsPerRound = GameManager.Instance.GetComponent<GameplaySettings> ().SecondsPerRound;
 
-    public int LooseBattlePointsOverTime() {return 0;}
+        customersWithoutPenalty = GameManager.Instance.GetComponent<GameplaySettings> ().CustomersWithoutPenalty;
 
+        penaltyEndOfRoundPerCustomer = GameManager.Instance.GetComponent<GameplaySettings> ().PenaltyEndOfRoundPerCustomer;
 
+        ratioPointsCustomerSatisfied = GameManager.Instance.GetComponent<GameplaySettings> ().RatioPointsCustomerSatisfied;
 
+        ratioPointsCustomerImpressed = GameManager.Instance.GetComponent<GameplaySettings> ().RatioPointsCustomerImpressed;
+
+        ratioPointsCustomerDiappointed = GameManager.Instance.GetComponent<GameplaySettings> ().RatioPointsCustomerDiappointed;
+
+        StartCoroutine (LoosePointsOverTime ());
+    }
+
+    IEnumerator LoosePointsOverTime () {
+
+        int waitingCustomers = CountCustomers ();
+
+        if (waitingCustomers > customersWithoutPenalty) {
+
+            int penalty = waitingCustomers * penaltyEndOfRoundPerCustomer;
+
+            gameScore -= penalty;
+
+            if (gameScore <= scoreLost) { LooseGame (); }
+
+        }
+
+        yield return new WaitForSeconds (secondsPerRound);
+
+    }
+
+    public void CheckIfWon () {
+
+        if (gameScore >= scoreWon) { WinGame (); }
+
+    }
 
 }
