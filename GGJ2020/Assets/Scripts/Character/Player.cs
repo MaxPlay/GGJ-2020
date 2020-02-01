@@ -22,7 +22,8 @@ public class Player : Character
 
     [SerializeField]
     Vector2 speeds;
-    float speed;
+    Vector3 memorizedPosition;
+    Interactable currentStation;
 
     [Space(20)]
 
@@ -34,10 +35,10 @@ public class Player : Character
         switch (currentState)
         {
             case PlayerStates.Default:
-                previousState = UpdateDefaultState();
+                currentState = UpdateDefaultState();
                 break;
             case PlayerStates.Fletching:
-                previousState = UpdateFletchingState();
+                currentState = UpdateFletchingState();
                 break;
         }
         HandleNextState();
@@ -73,25 +74,32 @@ public class Player : Character
 
     private void ExitFletchingState()
     {
-
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Fletching State");
+        transform.position = memorizedPosition;
     }
 
     private void ExitDefaultState()
     {
-
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Default State");
     }
 
     private void EnterDefaultState()
     {
-
+        if (debug)
+            Debug.Log("<b>[Player]</b> Enter Default State");
     }
 
     private void EnterFletchingState()
     {
-
+        if(debug)
+            Debug.Log("<b>[Player]</b> Enter Fletching State");
+        memorizedPosition = transform.position;
+        transform.position = (currentStation as FletchingStation).GrindingPosition;
     }
 
-    private void HandleInteractions()
+    private PlayerStates HandleInteractions()
     {
         if(Interactable.Instances != null)
         {
@@ -109,9 +117,25 @@ public class Player : Character
             if(currentClosest >= 0 && currentClosest < Interactable.Instances.Count)
             {
                 OnHandleDebug(DebugState.OnInteract, DebugLogStates.NormalLog, Interactable.Instances[currentClosest].name);
-                Interactable.Instances[currentClosest].Interact(this);
+                currentStation = Interactable.Instances[currentClosest].Interact(this);
+                return SwapToNewAction(Interactable.Instances[currentClosest]);
             }
         }
+        return currentState;
+    }
+
+    private PlayerStates SwapToNewAction(Interactable interactable)
+    {
+        if(interactable is Item)
+        {
+            return PlayerStates.Default;
+        }
+        if(interactable is FletchingStation)
+        {
+            return PlayerStates.Fletching;
+        }
+
+        return PlayerStates.Default;
     }
 
     private PlayerStates UpdateDefaultState()
@@ -124,7 +148,7 @@ public class Player : Character
             }
             else
             {
-                HandleInteractions();
+                return HandleInteractions();
             }
         }
         if (Input.GetKey(KeyCode.UpArrow))
