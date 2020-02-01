@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+
+    [SerializeField]
+private StationProgressbar stationProgressbar;
+
+
     protected bool isBeingUsed;
 
     private static List<Interactable> instances;
