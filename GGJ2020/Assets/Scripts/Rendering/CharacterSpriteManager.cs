@@ -10,7 +10,7 @@ public class CharacterSpriteManager : MonoBehaviour
         Right,
         Backward,
         Left,
-        HeadUp
+        BackwardHeadUp
     }
 
     [Serializable]

@@ -17,4 +17,14 @@ public class GameplaySettings : ScriptableObject
     private float customerMoveTime;
 
     public float CustomerMoveTime => customerMoveTime;
+
+    [SerializeField]
+    private float waitTimer;
+
+    public float WaitTimer => waitTimer;
+
+    [SerializeField]
+    private float duckReactRange;
+
+    public float DuckReactRange => duckReactRange;
 }

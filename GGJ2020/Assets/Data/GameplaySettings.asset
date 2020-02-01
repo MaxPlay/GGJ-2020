@@ -15,3 +15,5 @@ MonoBehaviour:
   maxObjectives: 5
   objectiveFrequency: 1
   customerMoveTime: 3
+  waitTimer: 10
+  duckReactRange: 1

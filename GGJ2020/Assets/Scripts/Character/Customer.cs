@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +16,43 @@ public class Customer : MonoBehaviour
 
     public LinearPath Path { get => path; }
 
+    [SerializeField]
+    private CharacterSpriteManager spritesWithSword;
+
+    [SerializeField]
+    private CharacterSpriteManager spritesWithoutSword;
+
+    private bool hasSword = true;
+
+    private bool waiting;
+    private float timer;
+
+    private Player player;
+
     private void Start()
     {
         path.Owner = transform.position;
         trigger = GetComponent<BoxCollider>();
+        player = FindObjectOfType<Player>();
+    }
+
+    private void Update()
+    {
+        if (!waiting)
+            return;
+
+        if (timer <= 0)
+        {
+            ObjectiveCompleted();
+        }
+
+        timer -= Time.deltaTime;
+
+        UpdateAnimation(
+            Vector3.Distance(player.transform.position, transform.position) < GameManager.Instance.Settings.DuckReactRange ? 
+            CharacterSpriteManager.CharacterState.BackwardHeadUp : 
+            CharacterSpriteManager.CharacterState.Backward
+            );
     }
 
     public IEnumerator Move(bool forward)
@@ -30,7 +64,8 @@ public class Customer : MonoBehaviour
         {
             while (time < totalTime)
             {
-                transform.position = path.Lerp((forward ? 1 : -1) * time / totalTime);
+                float interpolate = (forward ? time / totalTime : 1 - time / totalTime);
+                transform.position = path.Lerp(interpolate);
                 yield return null;
                 time += Time.deltaTime;
             }
@@ -42,8 +77,7 @@ public class Customer : MonoBehaviour
 
         if (forward)
         {
-            Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
-            sword.Initialize(Objective);
+            InitializeWaiting();
         }
         else
         {
@@ -52,15 +86,37 @@ public class Customer : MonoBehaviour
         }
     }
 
+    private void InitializeWaiting()
+    {
+        Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
+        sword.Initialize(Objective);
+        hasSword = false;
+        UpdateAnimation(CharacterSpriteManager.CharacterState.Backward);
+        waiting = true;
+        timer = GameManager.Instance.Settings.WaitTimer;
+    }
+
     public void Initialize(Objective objective)
     {
         Objective = objective;
         StartCoroutine(Move(true));
+        hasSword = true;
+        UpdateAnimation(CharacterSpriteManager.CharacterState.BackwardHeadUp);
+    }
+
+    private void UpdateAnimation(CharacterSpriteManager.CharacterState state)
+    {
+        spritesWithoutSword.gameObject.SetActive(!hasSword);
+        spritesWithoutSword.SetState(state);
+        spritesWithSword.gameObject.SetActive(hasSword);
+        spritesWithSword.SetState(state);
     }
 
     public void ObjectiveCompleted()
     {
-        Move(false);
+        StartCoroutine(Move(false));
+        waiting = false;
+        UpdateAnimation(CharacterSpriteManager.CharacterState.Forward);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,9 +124,10 @@ public class Customer : MonoBehaviour
         Sword sword = other.GetComponent<Sword>();
         if (sword != null)
         {
-            if(Objective.DoesMatch(sword))
+            if (Objective.DoesMatch(sword))
             {
                 Destroy(sword.gameObject);
+                hasSword = true;
                 ObjectiveCompleted();
             }
         }
