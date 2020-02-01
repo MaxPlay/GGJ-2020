@@ -15,3 +15,14 @@ MonoBehaviour:
   maxObjectives: 5
   objectiveFrequency: 1
   customerMoveTime: 3
+  swordTimeToAutoCoolDown: 30
+  minimumHeatToForge: 1
+  maximumHeatToMelt: 2
+  playerSpeeds: {x: 2, y: 2}
+  furnaceHeatDropSpeed: 1
+  furnaceMeltingStrength: 1
+  timeToFullyHeat: 4
+  timeToGrindWeapon: 2
+  bucketTimeToCooldDown: 5
+  timeForSmithing: 3
+  timeToAttachHandle: 2

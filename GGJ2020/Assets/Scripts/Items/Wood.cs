@@ -8,9 +8,6 @@ public class Wood : Item
 
     private bool debug = true;
 
-    [SerializeField]
-    GameObject handlePrefab;
-
     public float Worked { get => worked; }
 
     public override Interactable Interact(Character character)
@@ -29,6 +26,6 @@ public class Wood : Item
     public Handle TurnIntoHandle()
     {
         Destroy(gameObject);
-        return Instantiate(handlePrefab, transform.position, transform.rotation, transform.parent).GetComponent<Handle>();
+        return Instantiate(prefabs.Handle, transform.position, transform.rotation, transform.parent).GetComponent<Handle>();
     }
 }

@@ -107,11 +107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e556b243466fa4eae8445aa190b9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
+  progressSlider: {fileID: 0}
+  startWithSlider: 0
   interactionRange: 1.68
-  timeToCoolDown: 0
-  minimumHeat: 0
-  maximumHeat: 0
 --- !u!54 &-6225211379929251328
 Rigidbody:
   m_ObjectHideFlags: 0

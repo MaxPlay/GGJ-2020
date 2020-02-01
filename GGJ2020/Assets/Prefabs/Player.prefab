@@ -208,7 +208,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 4955930635721988362}
   dropPosition: {fileID: 4955930635023200695}
   rb: {fileID: 4955930634379137747}
-  speeds: {x: 2, y: 2}
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
   debug: 1
 --- !u!54 &4955930634379137747
 Rigidbody:

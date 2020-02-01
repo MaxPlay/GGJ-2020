@@ -7,9 +7,6 @@ public class WoodworkStation : Interactable
     [SerializeField]
     private Transform woodPosition, swordPosition, workingPosition;
 
-    [SerializeField]
-    float timeToUpgrade;
-
     float progress;
 
     private Item woodInventory, swordInventory;
@@ -32,9 +29,9 @@ public class WoodworkStation : Interactable
 
     public bool WorkOnSword()
     {
-        if(timeToUpgrade > 0)
+        if(settings.TimeToAttachHandle > 0)
         {
-            progress += Time.deltaTime / timeToUpgrade;
+            progress += Time.deltaTime / settings.TimeToAttachHandle;
         }
         if(progress >= 1)
         {

@@ -111,12 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354509dfe5dae9e4dab5a3020844adc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 959243537232612526}
   startWithSlider: 1
   interactionRange: 2
   swordSlider: {fileID: 9069866086702761315}
-  heatDropSpeed: 0.5
   dropParent: {fileID: 495551194917779202}
   debug: 0
 --- !u!135 &7094838535083455700

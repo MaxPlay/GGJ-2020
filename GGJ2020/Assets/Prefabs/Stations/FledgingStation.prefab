@@ -138,12 +138,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667f93674cfbf804e8c64505eda970a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 734384693404448022}
   startWithSlider: 0
   interactionRange: 1.7
   grindingPosition: {fileID: 734384693308361811}
-  timeToGrind: 4
 --- !u!1001 &1256883810604883455
 PrefabInstance:
   m_ObjectHideFlags: 0

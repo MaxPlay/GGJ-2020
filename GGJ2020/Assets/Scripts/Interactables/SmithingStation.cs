@@ -5,9 +5,6 @@ using UnityEngine;
 public class SmithingStation : Interactable
 {
     [SerializeField]
-    float smithingSpeed;
-
-    [SerializeField]
     Transform smithingPosition;
 
     [SerializeField]
@@ -20,8 +17,6 @@ public class SmithingStation : Interactable
             return smithingPosition.position;
         }
     }
-
-    public float SmithingSpeed { get => smithingSpeed; }
 
     public override Interactable Interact(Character character)
     {

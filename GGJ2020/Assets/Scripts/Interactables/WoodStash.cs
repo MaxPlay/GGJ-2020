@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class WoodStash : Interactable
 {
-    [SerializeField]
-    private GameObject woodPrefab;
-
     public override Interactable Interact(Character character)
     {
         if(character.Inventory == null)
         {
-            Wood spawnedWood = Instantiate(woodPrefab).GetComponent<Wood>();
+            Wood spawnedWood = Instantiate(prefabs.Wood).GetComponent<Wood>();
 
             character.PickUpItem(spawnedWood);
         }

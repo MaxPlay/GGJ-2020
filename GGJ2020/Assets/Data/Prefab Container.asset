@@ -15,3 +15,5 @@ MonoBehaviour:
   Customer: {fileID: -5955706164102217003, guid: 4909de998f1ab294ea19b4610de14c55,
     type: 3}
   Sword: {fileID: 5553220734403016888, guid: c3eb2c0a104cfea48b4edc07f917c195, type: 3}
+  Handle: {fileID: 4741188408447510405, guid: c0b91ba0ef5b17a4aa15147003f4d68f, type: 3}
+  Wood: {fileID: 1124514429340244676, guid: 2aa457751d8e86249b6ab2df5fcaa253, type: 3}

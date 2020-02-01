@@ -138,11 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa3e697d85d3d74f9c1c1e19629a4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 1145873354545501426}
   startWithSlider: 0
   interactionRange: 1.9
-  smithingSpeed: 1
   smithingPosition: {fileID: 1751975311196783844}
   debug: 0
 --- !u!1001 &1488055298388474907
