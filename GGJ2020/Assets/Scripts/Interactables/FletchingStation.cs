@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FletchingStation : Interactable
 {
+    [SerializeField]
+    Transform grindingPosition;
+
     public override Interactable Interact(Character character)
     {
         return this;
