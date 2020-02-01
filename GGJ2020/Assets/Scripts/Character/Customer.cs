@@ -1,10 +1,13 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
     [SerializeField]
-    LinearPath path;
+    private LinearPath path;
+
+    private BoxCollider trigger;
 
     public Objective Objective { get; private set; }
 
@@ -15,6 +18,7 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         path.Owner = transform.position;
+        trigger = GetComponent<BoxCollider>();
     }
 
     public IEnumerator Move(bool forward)
@@ -36,7 +40,12 @@ public class Customer : MonoBehaviour
             transform.position = path.Lerp(forward ? 1 : -1);
         }
 
-        if (!forward)
+        if (forward)
+        {
+            Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
+            sword.Initialize(Objective);
+        }
+        else
         {
             Objective = null;
             GameManager.Instance.GameState.ObjectiveQueue.FreeSlot(Index);
@@ -54,6 +63,19 @@ public class Customer : MonoBehaviour
         Move(false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Sword sword = other.GetComponent<Sword>();
+        if (sword != null)
+        {
+            if(Objective.DoesMatch(sword))
+            {
+                Destroy(sword.gameObject);
+                ObjectiveCompleted();
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -65,10 +87,10 @@ public class Customer : MonoBehaviour
             return;
 
         Gizmos.color = Objective.Grind ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up * 0.3f, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.9f, Vector3.one * 0.3f);
         Gizmos.color = Objective.Grip ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.6f, Vector3.one * 0.3f);
         Gizmos.color = Objective.Smith ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up * -0.3f, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.3f, Vector3.one * 0.3f);
     }
 }

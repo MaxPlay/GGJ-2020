@@ -15,6 +15,14 @@ public class Character : MonoBehaviour
 
     private Vector2 additiveSpeed;
 
+    public Item Inventory
+    {
+        get
+        {
+            return inventory;
+        }
+    }
+
     protected virtual void Update()
     {
         rb.velocity = MathUtils.VectorLerp(rb.velocity, Vector3.right * additiveSpeed.x + Vector3.forward * additiveSpeed.y, 0.5f);

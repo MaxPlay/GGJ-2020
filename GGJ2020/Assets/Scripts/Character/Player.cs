@@ -128,6 +128,18 @@ public class Player : Character
         return currentState;
     }
 
+    public Sword PlaceSwordInFurncae()
+    {
+        if(inventory is Sword)
+        {
+            Sword sword = inventory as Sword;
+            inventory.gameObject.transform.parent = null;
+            inventory = null;
+            return sword;
+        }
+        return null;
+    }
+
     private PlayerStates SwapToNewAction(Interactable interactable)
     {
         if(interactable is Item)
@@ -169,7 +181,7 @@ public class Player : Character
 
     private PlayerStates UpdateFletchingState()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             return PlayerStates.Default;
         }
