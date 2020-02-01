@@ -15,6 +15,11 @@ public class Sword : Item
     [SerializeField]
     float timeToCoolDown;
 
+    [Space(10)]
+
+    [SerializeField]
+    float minimumHeat, maximumHeat;
+
     private const bool debug = false;
 
     public bool HasHandle { get => hasHandle; }
@@ -30,6 +35,8 @@ public class Sword : Item
     public float HeatSword(float strength)
     {
         heat += strength;
+        if (heat < 0)
+            heat = 0;
         isHeatingUp = true;
         if (debug)
             Debug.Log("<b>[Sword]</b> New Heat: " + heat);
@@ -46,7 +53,10 @@ public class Sword : Item
 
     public float HammerSword(float strength)
     {
-        quality = Mathf.Clamp01(quality + (strength * Mathf.Clamp01(heat - 1)));
+        if(heat > minimumHeat)
+        {
+            quality = Mathf.Clamp01(quality + strength);
+        }
         if (debug)
             Debug.Log("<b>[Sword]</b> New Quality: " + quality);
         return quality;
