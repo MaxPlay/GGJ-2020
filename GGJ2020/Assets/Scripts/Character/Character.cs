@@ -36,9 +36,12 @@ public class Character : MonoBehaviour
 
     public void PickUpItem(Item item)
     {
-        inventory = item;
-        inventory.transform.SetParent(inventorySlot);
-        inventory.transform.localPosition = Vector3.zero;
+        if(inventory == null)
+        {
+            inventory = item;
+            inventory.transform.SetParent(inventorySlot);
+            inventory.transform.localPosition = Vector3.zero;
+        }
     }
 
     protected void PutItem()
@@ -48,9 +51,12 @@ public class Character : MonoBehaviour
 
     protected void DropItem()
     {
-        inventory.transform.position = dropPosition.position;
-        inventory.transform.parent = null;
-        inventory = null;
+        if(inventory != null)
+        {
+            inventory.transform.position = dropPosition.position;
+            inventory.transform.parent = null;
+            inventory = null;
+        }
     }
 
     private void OnDrawGizmos()

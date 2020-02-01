@@ -10,6 +10,9 @@ public class FurnaceStation : Interactable
     [SerializeField]
     Transform dropParent;
 
+    [SerializeField]
+    bool debug = false;
+
     float currentHeat = 0.5f;
     Sword inventory;
 
@@ -59,6 +62,11 @@ public class FurnaceStation : Interactable
         if(currentHeatLevel > 0 && inventory != null)
         {
             inventory.HeatSword(Time.deltaTime / (9 / currentHeatLevel));
+        }
+        currentHeat -= (Time.deltaTime / 4) / ((currentHeatLevel + 2) * heatDropSpeed);
+        if(debug)
+        {
+            Debug.Log("<b>[FurnaceStation] New Heat: </b>" + currentHeat);
         }
     }
 }
