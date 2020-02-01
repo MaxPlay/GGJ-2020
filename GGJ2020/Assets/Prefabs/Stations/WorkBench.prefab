@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e4acdb5e178ec4eb178cb8b095d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 2624663901279377454}
   startWithSlider: 0
@@ -117,7 +119,6 @@ MonoBehaviour:
   woodPosition: {fileID: 605380062814321287}
   swordPosition: {fileID: 4552288474608153246}
   workingPosition: {fileID: 4552288475676401750}
-  timeToUpgrade: 1
 --- !u!1 &605380062814321288
 GameObject:
   m_ObjectHideFlags: 0

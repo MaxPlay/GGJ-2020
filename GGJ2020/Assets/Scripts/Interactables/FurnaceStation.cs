@@ -9,9 +9,6 @@ public class FurnaceStation : Interactable
     Slider swordSlider;
 
     [SerializeField]
-    float heatDropSpeed;
-
-    [SerializeField]
     Transform dropParent;
 
     [SerializeField]
@@ -28,8 +25,6 @@ public class FurnaceStation : Interactable
             return (int)(currentHeat * 4);
         }
     }
-
-    public float HeatDropSpeed { get => heatDropSpeed; }
 
     public override Interactable Interact(Character character)
     {
@@ -87,12 +82,12 @@ public class FurnaceStation : Interactable
     {
         if(currentHeatLevel > 0 && inventory != null)
         {
-            inventory.HeatSword(Time.deltaTime / (9 / currentHeatLevel));
+            inventory.HeatSword(Time.deltaTime * settings.FurnaceMeltingStrength / (9 / currentHeatLevel));
             swordSlider.value = inventory.Heat;
         }
-        if(heatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
+        if(settings.FurnaceHeatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
         {
-            currentHeat -= (Time.deltaTime / 4) * heatDropSpeed * 0.01f * (currentHeatLevel + 1) * (currentHeatLevel + 1);
+            currentHeat -= (Time.deltaTime / 4) * settings.FurnaceHeatDropSpeed * 0.01f * (currentHeatLevel + 1) * (currentHeatLevel + 1);
         }
         else if(currentHeat < 0)
         {

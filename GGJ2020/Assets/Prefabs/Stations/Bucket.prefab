@@ -108,12 +108,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82fdb5f6dd412438ace322afad4f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 3703692603664804412}
   startWithSlider: 0
   interactionRange: 1.67
   swordPosition: {fileID: 1233409103239822515}
-  timeToCooldown: 1
 --- !u!1 &1233409103239822514
 GameObject:
   m_ObjectHideFlags: 0

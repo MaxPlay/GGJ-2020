@@ -17,3 +17,14 @@ MonoBehaviour:
   customerMoveTime: 3
   waitTimer: 10
   duckReactRange: 1
+  swordTimeToAutoCoolDown: 30
+  minimumHeatToForge: 1
+  maximumHeatToMelt: 2
+  playerSpeeds: {x: 2, y: 2}
+  furnaceHeatDropSpeed: 1
+  furnaceMeltingStrength: 1
+  timeToFullyHeat: 4
+  timeToGrindWeapon: 2
+  bucketTimeToCooldDown: 5
+  timeForSmithing: 3
+  timeToAttachHandle: 2

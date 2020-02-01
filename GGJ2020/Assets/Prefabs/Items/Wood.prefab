@@ -106,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf360f1da77d9e4286447d57cc580ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
   stationProgressbar: {fileID: 0}
+  progressSlider: {fileID: 0}
+  startWithSlider: 0
   interactionRange: 1.49
-  handlePrefab: {fileID: 8354945935528914392, guid: c0b91ba0ef5b17a4aa15147003f4d68f,
-    type: 3}

@@ -10,9 +10,6 @@ public class HeatingStation : Interactable
     [SerializeField]
     Transform heatingPosition;
 
-    [SerializeField]
-    float timeToFullyHeat;
-
     public Vector3 HeatingPosition
     {
         get
@@ -21,7 +18,7 @@ public class HeatingStation : Interactable
         }
     }
 
-    public float TimeToFullyHeat { get => timeToFullyHeat; }
+    public float TimeToFullyHeat { get => settings.TimeToFullyHeat; }
 
     public override Interactable Interact(Character character)
     {
@@ -30,9 +27,9 @@ public class HeatingStation : Interactable
 
     public void HeatFurnace()
     {
-        if(timeToFullyHeat > 0)
+        if(settings.TimeToFullyHeat > 0)
         {
-            furnace.HeatFurnace(((Time.deltaTime / timeToFullyHeat) / 4) / (furnace.currentHeatLevel + 1));
+            furnace.HeatFurnace(((Time.deltaTime / settings.TimeToFullyHeat) / 4) / (furnace.currentHeatLevel + 1));
         }
     }
 

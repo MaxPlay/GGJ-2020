@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public abstract class Interactable : MonoBehaviour
 {
+    [SerializeField]
+    protected GameplaySettings settings;
+
+    [SerializeField]
+    protected PrefabContainer prefabs;
 
     [SerializeField]
     protected StationProgressbar stationProgressbar;

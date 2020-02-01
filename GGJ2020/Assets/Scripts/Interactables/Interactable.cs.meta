@@ -3,7 +3,11 @@ guid: c8964404d6881004da2d6ac63f330150
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
+  - prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
+  - stationProgressbar: {instanceID: 0}
+  - progressSlider: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

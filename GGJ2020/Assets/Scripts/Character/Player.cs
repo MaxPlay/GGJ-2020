@@ -24,7 +24,8 @@ public class Player : Character
     PlayerStates previousState;
 
     [SerializeField]
-    Vector2 speeds;
+    GameplaySettings settings;
+
     Vector3 memorizedPosition;
     Interactable currentStation;
 
@@ -274,22 +275,22 @@ public class Player : Character
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            Move(Vector2.up * speeds.y);
+            Move(Vector2.up * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Backward);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Move(Vector2.right * speeds.x);
+            Move(Vector2.right * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Right);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Move(Vector2.left * speeds.x);
+            Move(Vector2.left * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Move(Vector2.down * speeds.y);
+            Move(Vector2.down * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Forward);
         }
         return PlayerStates.Default;
@@ -314,7 +315,8 @@ public class Player : Character
         {
             return PlayerStates.Default;
         }
-        (inventory as Sword).HammerSword(Time.deltaTime * (currentStation as SmithingStation).SmithingSpeed);
+        if(settings.TimeForSmithing > 0)
+            (inventory as Sword).HammerSword(Time.deltaTime / settings.TimeForSmithing);
         currentStation.SetProgressbarValue((inventory as Sword).Quality);
         return PlayerStates.Smithing;
     }
@@ -337,15 +339,15 @@ public class Player : Character
             return PlayerStates.Default;
         }
 
-        if((currentStation as FletchingStation).TimeToGrind > 0)
+        if(settings.TimeToGrindWeapon > 0)
         {
             if(inventory is Sword)
             {
-                currentStation.SetProgressbarValue((inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind));
+                currentStation.SetProgressbarValue((inventory as Sword).SharpenSword(Time.deltaTime / settings.TimeToGrindWeapon));
             }
             else if(inventory is Wood)
             {
-                currentStation.SetProgressbarValue((inventory as Wood).WorkOnWood(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind));
+                currentStation.SetProgressbarValue((inventory as Wood).WorkOnWood(Time.deltaTime / settings.TimeToGrindWeapon));
             }
         }
         return PlayerStates.Fletching;

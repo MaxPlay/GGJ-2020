@@ -12,14 +12,6 @@ public class Sword : Item
 
     bool isHeatingUp;
 
-    [SerializeField]
-    float timeToCoolDown;
-
-    [Space(10)]
-
-    [SerializeField]
-    float minimumHeat, maximumHeat;
-
     private const bool debug = false;
 
     public bool HasHandle { get => hasHandle; }
@@ -55,7 +47,7 @@ public class Sword : Item
 
     public float HammerSword(float strength)
     {
-        if(heat > minimumHeat)
+        if(heat > settings.MinimumHeatToForge)
         {
             quality = Mathf.Clamp01(quality + strength);
             sharpness = Mathf.Clamp01(sharpness - strength);
@@ -90,9 +82,9 @@ public class Sword : Item
 
     private void Update()
     {
-        if(!isHeatingUp && timeToCoolDown > 0)
+        if(!isHeatingUp && settings.SwordTimeToAutoCoolDown > 0)
         {
-            heat = Mathf.Clamp01(heat - Time.deltaTime / timeToCoolDown);
+            heat = Mathf.Clamp01(heat - Time.deltaTime / settings.SwordTimeToAutoCoolDown);
         }
         isHeatingUp = true;
     }

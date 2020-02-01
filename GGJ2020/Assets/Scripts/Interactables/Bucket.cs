@@ -9,9 +9,6 @@ public class Bucket : Interactable
     [SerializeField]
     Transform swordPosition;
 
-    [SerializeField]
-    float timeToCooldown;
-
     public override void Start()
     {
         base.Start();
@@ -41,9 +38,9 @@ public class Bucket : Interactable
 
     private void Update()
     {
-        if(inventory != null && timeToCooldown > 0)
+        if(inventory != null && settings.BucketTimeToCooldDown > 0)
         {
-            inventory.HeatSword(Time.deltaTime / -timeToCooldown);
+            inventory.HeatSword(Time.deltaTime / -settings.BucketTimeToCooldDown);
             SetProgressbarValue(inventory.Heat);
         }
     }
