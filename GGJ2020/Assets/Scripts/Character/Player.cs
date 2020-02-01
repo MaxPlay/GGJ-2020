@@ -120,6 +120,10 @@ public class Player : Character
                 currentStation = Interactable.Instances[currentClosest].Interact(this);
                 return SwapToNewAction(Interactable.Instances[currentClosest]);
             }
+            else if(currentClosest < 0 && inventory != null)
+            {
+                DropItem();
+            }
         }
         return currentState;
     }
@@ -130,7 +134,7 @@ public class Player : Character
         {
             return PlayerStates.Default;
         }
-        if(interactable is FletchingStation)
+        if(interactable is FletchingStation && inventory != null && inventory is Sword)
         {
             return PlayerStates.Fletching;
         }
@@ -142,14 +146,7 @@ public class Player : Character
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(inventory != null)
-            {
-                DropItem();
-            }
-            else
-            {
-                return HandleInteractions();
-            }
+            return HandleInteractions();
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -172,6 +169,15 @@ public class Player : Character
 
     private PlayerStates UpdateFletchingState()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+
+        if((currentStation as FletchingStation).TimeToGrind > 0)
+        {
+            (inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+        }
         return PlayerStates.Fletching;
     }
 

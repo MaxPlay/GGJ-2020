@@ -7,6 +7,9 @@ public class FletchingStation : Interactable
     [SerializeField]
     Transform grindingPosition;
 
+    [SerializeField]
+    float timeToGrind;
+
     public Vector3 GrindingPosition
     {
         get
@@ -14,6 +17,8 @@ public class FletchingStation : Interactable
             return grindingPosition.position;
         }
     }
+
+    public float TimeToGrind { get => timeToGrind; }
 
     public override Interactable Interact(Character character)
     {
