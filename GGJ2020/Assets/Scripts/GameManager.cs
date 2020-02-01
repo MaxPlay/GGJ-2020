@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool HasGameState => gameState != null;
 
     public System.Random Random { get; private set; }
+
     public PrefabContainer Prefabs => prefabs;
 
     [SerializeField]

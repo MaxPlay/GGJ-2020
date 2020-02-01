@@ -4,11 +4,18 @@ using System.Collections.Generic;
 
 public class ObjectiveQueue
 {
-    List<Objective> objectives = new List<Objective>();
+    Objective[] objectives;
+    private CustomerLine customerLine;
 
-    public int MaxObjectives { get { return GameManager.Instance.Settings.MaxObjectives; } }
+    public ObjectiveQueue(int maxObjectives, CustomerLine customerLine)
+    {
+        objectives = new Objective[maxObjectives];
+        this.customerLine = customerLine;
+    }
 
-    public int Count => objectives.Count;
+    public int MaxObjectives => objectives.Length;
+
+    public int Count { get; private set; }
 
     public Objective this[int index] => objectives[index];
 
@@ -16,13 +23,32 @@ public class ObjectiveQueue
 
     public void AddObjective(Objective objective)
     {
-        if(objectives.Count < MaxObjectives)
+        if(Count < MaxObjectives)
         {
-            objectives.Add(objective);
-            Customer customer = UnityEngine.Object.Instantiate(GameManager.Instance.Prefabs.Customer);
+            int index = FillFreeSlot(objective);
+            Customer customer = customerLine[index];
             objective.Owner = customer;
             customer.Initialize(objective);
         }
+    }
+
+    private int FillFreeSlot(Objective objective)
+    {
+        for (int i = 0; i < objectives.Length; i++)
+        {
+            if (objectives[i] == null)
+            {
+                objectives[i] = objective;
+                Count++;
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void FreeSlot(int index)
+    {
+        objectives[index] = null;
     }
 
     public Objective LastObjective()
