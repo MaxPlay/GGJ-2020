@@ -17,7 +17,7 @@ public class Player : Character
 
     bool didDebug = false;
 
-    private void Update()
+    protected void Update()
     {
         didDebug = false;
         switch (currentState)
