@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc05ddae945e3844be9b73d1f645c6f, type: 3}
   m_Name: GameplaySettings
   m_EditorClassIdentifier: 
-  maxObjectives: 0
-  objectiveFrequency: 0
+  maxObjectives: 5
+  objectiveFrequency: 1
+  customerMoveTime: 3

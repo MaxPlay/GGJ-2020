@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b409f30897f07141b3fdc1bb77edd73, type: 3}
   m_Name: Prefab Container
   m_EditorClassIdentifier: 
-  Customer: {fileID: 0}
+  Customer: {fileID: -5955706164102217003, guid: 4909de998f1ab294ea19b4610de14c55,
+    type: 3}
+  Sword: {fileID: 5553220734403016888, guid: c3eb2c0a104cfea48b4edc07f917c195, type: 3}
