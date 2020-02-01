@@ -19,7 +19,7 @@ public class StationProgressbar : MonoBehaviour {
 
         transform.position = new Vector3 (parentPos.x, parentPos.y + 1, parentPos.z);
 
-   //     transform.gameObject.SetActive (false);
+        transform.gameObject.SetActive (false);
 
     }
 
