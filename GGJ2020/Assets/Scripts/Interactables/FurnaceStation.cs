@@ -79,4 +79,13 @@ public class FurnaceStation : Interactable
             Debug.Log("<b>[FurnaceStation]</b> New Heat: " + currentHeat);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if (dropParent != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(dropParent.position, 0.1f);
+        }
+    }
 }
