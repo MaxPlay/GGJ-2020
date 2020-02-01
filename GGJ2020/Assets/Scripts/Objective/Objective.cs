@@ -26,5 +26,12 @@ public class Objective
     {
         return $"Objective requires Grind = {Grind}, Grip = {Grip}, Smith = {Smith}";
     }
-    
+
+    public bool DoesMatch(Sword sword)
+    {
+        if (sword.Heat > 0.0f)
+            return false;
+
+        return sword.Sharpness == 1.0f && sword.HasHandle && sword.Sharpness == 1.0f;
+    }
 }
