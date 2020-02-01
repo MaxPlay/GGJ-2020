@@ -17,8 +17,21 @@ private float itemGrindingStartValue;
 private float itemGrindingFinishValue;
 
 
+
+
+
+//Gamestuff
+private GameObject progressbar;
+private float distanceProgressbarToStation = (float) 1.0;
+
+private StationProgressbar stationProgressbar;
+
+
+
 //inner logic
 
+[SerializeField]
+private int stationIdentifier;
 [SerializeField]
 private float progressSpeed;
 
@@ -28,8 +41,39 @@ private float progressSpeed;
     // Start is called before the first frame update
     void Start()
     {
+
+GameObject canvasGui = GameObject.Find("CanvasWorldGui");
         
+progressbar = transform.Find("Progressbar").gameObject;
+progressbar.transform.SetParent(canvasGui.transform);
+
+stationProgressbar = progressbar.GetComponent<StationProgressbar>();
+
+
     }
+
+
+
+
+void Update() {
+
+//Test
+// itemGrindingValue += progressSpeed * Time.deltaTime;
+// float percentDone = GetProgressInPercent(itemGrindingStartValue, itemGrindingFinishValue, itemGrindingValue);
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -42,7 +86,7 @@ private float progressSpeed;
 
 
 
-
+UseStation(stationIdentifier);
 
 
         
@@ -52,18 +96,7 @@ private float progressSpeed;
 
         {
 
-
-
-
-
         }
-
-
-
-
-
-
-
 
     }
 
@@ -81,11 +114,6 @@ private float progressSpeed;
 
 private void UseStation(int stationIdentifier) {
 
-
-
-
-
-
 switch(stationIdentifier) {
 
 case 0:
@@ -98,7 +126,7 @@ itemGrindingValue += progressSpeed * Time.deltaTime;
 float percentDone = GetProgressInPercent(itemGrindingStartValue, itemGrindingFinishValue, itemGrindingValue);
 
 //Give to Progressbar
-
+stationProgressbar.SetProgressbar(percentDone);
 
 break;
 
@@ -107,32 +135,13 @@ break;
 
 default:
 
-Debug.Log("UseStation: The fuck happened?")
+Debug.Log("UseStation: The fuck happened?");
 
 break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
-
 }
-
-
 
 private float GetProgressInPercent(float start, float finish, float present) {
 
@@ -143,7 +152,5 @@ float percentage = (present - start) / hundredPercent * 100;
 return percentage;
 
 }
-
-
 
 }
