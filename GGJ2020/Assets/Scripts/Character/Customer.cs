@@ -65,10 +65,10 @@ public class Customer : MonoBehaviour
             return;
 
         Gizmos.color = Objective.Grind ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up * 0.3f, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.9f, Vector3.one * 0.3f);
         Gizmos.color = Objective.Grip ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.6f, Vector3.one * 0.3f);
         Gizmos.color = Objective.Smith ? Color.white : Color.black;
-        Gizmos.DrawCube(transform.position + Vector3.up * -0.3f, Vector3.one * 0.3f);
+        Gizmos.DrawCube(transform.position + Vector3.up * 1.3f, Vector3.one * 0.3f);
     }
 }
