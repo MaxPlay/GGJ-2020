@@ -516,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1.7
   grindingPosition: {fileID: 1659088824}
+  timeToGrind: 4
 --- !u!135 &1386446554
 SphereCollider:
   m_ObjectHideFlags: 0

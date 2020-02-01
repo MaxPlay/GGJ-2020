@@ -169,7 +169,15 @@ public class Player : Character
 
     private PlayerStates UpdateFletchingState()
     {
-        (inventory as Sword).SharpenSword(Time.deltaTime);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+
+        if((currentStation as FletchingStation).TimeToGrind > 0)
+        {
+            (inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+        }
         return PlayerStates.Fletching;
     }
 
