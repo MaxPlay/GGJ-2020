@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Sword : Item
 {
-    // Start is called before the first frame update
-    void Start()
+    public override Interactable Interact(Character character)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return base.Interact(character);
     }
 }
