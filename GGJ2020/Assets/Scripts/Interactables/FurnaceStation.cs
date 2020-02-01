@@ -58,6 +58,7 @@ public class FurnaceStation : Interactable
 
     public override void Start()
     {
+        swordSlider.gameObject.SetActive(false);
         base.Start();
     }
 
