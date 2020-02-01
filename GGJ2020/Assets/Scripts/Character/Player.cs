@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public enum PlayerStates
 {
     Default = 0,
-    Fletching = 1
+    Fletching = 1,
+    Heating = 2,
 }
 
 public class Player : Character
@@ -40,6 +41,9 @@ public class Player : Character
             case PlayerStates.Fletching:
                 currentState = UpdateFletchingState();
                 break;
+            case PlayerStates.Heating:
+                currentState = UpdateHeatingState();
+                break;
         }
         HandleNextState();
 
@@ -59,6 +63,9 @@ public class Player : Character
                 case PlayerStates.Fletching:
                     EnterFletchingState();
                     break;
+                case PlayerStates.Heating:
+                    EnterHeatingState();
+                    break;
             }
             switch (previousState)
             {
@@ -67,6 +74,9 @@ public class Player : Character
                     break;
                 case PlayerStates.Fletching:
                     ExitFletchingState();
+                    break;
+                case PlayerStates.Heating:
+                    ExitHeatingState();
                     break;
             }
         }
@@ -83,6 +93,21 @@ public class Player : Character
     {
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Default State");
+    }
+
+    private void ExitHeatingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Heating State");
+        transform.position = memorizedPosition;
+    }
+
+    private void EnterHeatingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Enter Heating State");
+        memorizedPosition = transform.position;
+        transform.position = (currentStation as HeatingStation).HeatingPosition;
     }
 
     private void EnterDefaultState()
@@ -146,9 +171,13 @@ public class Player : Character
         {
             return PlayerStates.Default;
         }
-        if(interactable is FletchingStation && inventory != null && inventory is Sword)
+        else if(interactable is FletchingStation && inventory != null && inventory is Sword)
         {
             return PlayerStates.Fletching;
+        }
+        else if(interactable is HeatingStation)
+        {
+            return PlayerStates.Heating;
         }
 
         return PlayerStates.Default;
@@ -177,6 +206,17 @@ public class Player : Character
             Move(Vector2.down * speeds.y);
         }
         return PlayerStates.Default;
+    }
+
+    private PlayerStates UpdateHeatingState()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+
+        (currentStation as HeatingStation).HeatFurnace();
+        return PlayerStates.Heating;
     }
 
     private PlayerStates UpdateFletchingState()
