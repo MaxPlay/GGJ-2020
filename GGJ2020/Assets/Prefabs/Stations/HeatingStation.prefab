@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationProgressbar: {fileID: 0}
+  progressSlider: {fileID: 0}
+  startWithSlider: 0
   interactionRange: 2.02
   furnace: {fileID: 0}
   heatingPosition: {fileID: 934187047588948261}

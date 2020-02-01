@@ -26,11 +26,13 @@ public class Bucket : Interactable
     {
         if(character.Inventory != null && character.Inventory is Sword && inventory == null)
         {
+            SetProgressbarEnabled(true);
             inventory = (character as Player).PlaceSwordInWorkstation();
             inventory.transform.position = swordPosition.position;
         }
         else if (character.Inventory == null && inventory != null)
         {
+            SetProgressbarEnabled(false);
             character.PickUpItem(inventory);
             inventory = null;
         }
@@ -42,6 +44,7 @@ public class Bucket : Interactable
         if(inventory != null && timeToCooldown > 0)
         {
             inventory.HeatSword(Time.deltaTime / -timeToCooldown);
+            SetProgressbarValue(inventory.Heat);
         }
     }
 }

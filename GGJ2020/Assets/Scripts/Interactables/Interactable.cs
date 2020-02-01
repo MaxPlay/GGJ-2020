@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Interactable : MonoBehaviour
 {
 
     [SerializeField]
-private StationProgressbar stationProgressbar;
+    protected StationProgressbar stationProgressbar;
+
+    [SerializeField]
+    Slider progressSlider;
+    [SerializeField]
+    bool startWithSlider;
 
 
     protected bool isBeingUsed;
@@ -30,6 +36,12 @@ private StationProgressbar stationProgressbar;
         {
             return instances;
         }
+    }
+
+    public virtual void Awake()
+    {
+        if (progressSlider)
+            progressSlider.gameObject.SetActive(startWithSlider);
     }
 
     public virtual void Start()
@@ -68,6 +80,18 @@ private StationProgressbar stationProgressbar;
             instances = new List<Interactable>();
         }
         instances.Remove(this);
+    }
+
+    public void SetProgressbarValue(float val)
+    {
+        if(progressSlider)
+            progressSlider.value = val;
+    }
+
+    public void SetProgressbarEnabled(bool val)
+    {
+        if(progressSlider)
+            progressSlider.gameObject.SetActive(val);
     }
 
     abstract public Interactable Interact(Character character);

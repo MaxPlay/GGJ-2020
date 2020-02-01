@@ -41,6 +41,7 @@ public class WoodworkStation : Interactable
             FinishWork();
             return true;
         }
+        SetProgressbarValue(progress);
         return false;
     }
 
@@ -48,6 +49,7 @@ public class WoodworkStation : Interactable
     {
         Destroy(woodInventory.gameObject);
         woodInventory = null;
+        progress = 0;
         (swordInventory as Sword).AddHandle();
     }
 

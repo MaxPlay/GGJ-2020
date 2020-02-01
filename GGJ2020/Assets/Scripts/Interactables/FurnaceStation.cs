@@ -46,6 +46,7 @@ public class FurnaceStation : Interactable
     public void HeatFurnace(float strength)
     {
         currentHeat = Mathf.Clamp01(currentHeat + strength);
+        SetProgressbarValue(currentHeat);
         isHeatingUp = true;
     }
 
@@ -73,6 +74,7 @@ public class FurnaceStation : Interactable
         {
             currentHeat = 0;
         }
+        SetProgressbarValue(currentHeat);
         isHeatingUp = false;
         if (debug)
         {

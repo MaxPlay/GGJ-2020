@@ -107,7 +107,8 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Fletching State");
         transform.position = memorizedPosition;
-        if(inventory is Wood && (inventory as Wood).Worked >= 1)
+        currentStation.SetProgressbarEnabled(false);
+        if (inventory is Wood && (inventory as Wood).Worked >= 1)
         {
             inventory = (inventory as Wood).TurnIntoHandle();
         }
@@ -124,6 +125,7 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Heating State");
         transform.position = memorizedPosition;
+        currentStation.SetProgressbarEnabled(false);
     }
 
     private void ExitSmithingState()
@@ -131,6 +133,7 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Smithing State");
         transform.position = memorizedPosition;
+        currentStation.SetProgressbarEnabled(false);
     }
 
     private void ExitAttachingState()
@@ -138,6 +141,7 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Woodworking State");
         transform.position = memorizedPosition;
+        currentStation.SetProgressbarEnabled(false);
     }
 
     private void EnterAttachingState()
@@ -146,6 +150,7 @@ public class Player : Character
             Debug.Log("<b>[Player]</b> Enter Smithing State");
         (currentStation as WoodworkStation).ResetProgress();
         memorizedPosition = transform.position;
+        currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as WoodworkStation).WorkingPosition;
     }
 
@@ -154,6 +159,7 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Smithing State");
         memorizedPosition = transform.position;
+        currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as SmithingStation).SmithingPosition;
     }
 
@@ -162,6 +168,7 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Heating State");
         memorizedPosition = transform.position;
+        currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as HeatingStation).HeatingPosition;
     }
 
@@ -176,6 +183,7 @@ public class Player : Character
         if(debug)
             Debug.Log("<b>[Player]</b> Enter Fletching State");
         memorizedPosition = transform.position;
+        currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as FletchingStation).GrindingPosition;
     }
 
@@ -303,6 +311,7 @@ public class Player : Character
             return PlayerStates.Default;
         }
         (inventory as Sword).HammerSword(Time.deltaTime * (currentStation as SmithingStation).SmithingSpeed);
+        currentStation.SetProgressbarValue((inventory as Sword).Quality);
         return PlayerStates.Smithing;
     }
 
@@ -328,11 +337,11 @@ public class Player : Character
         {
             if(inventory is Sword)
             {
-                (inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+                currentStation.SetProgressbarValue((inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind));
             }
             else if(inventory is Wood)
             {
-                (inventory as Wood).WorkOnWood(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+                currentStation.SetProgressbarValue((inventory as Wood).WorkOnWood(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind));
             }
         }
         return PlayerStates.Fletching;
