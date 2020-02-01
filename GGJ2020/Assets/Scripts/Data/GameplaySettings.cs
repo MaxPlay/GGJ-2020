@@ -13,4 +13,8 @@ public class GameplaySettings : ScriptableObject
 
     public float ObjectiveFrequency => objectiveFrequency;
 
+    [SerializeField]
+    private float customerMoveTime;
+
+    public float CustomerMoveTime => customerMoveTime;
 }
