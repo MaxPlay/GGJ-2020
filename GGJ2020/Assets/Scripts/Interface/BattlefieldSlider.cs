@@ -12,9 +12,21 @@ public class BattlefieldSlider : MonoBehaviour {
     [SerializeField]
     int scoreLose = 0;
 
+        [SerializeField]
+    int score = 10;
+
     private Slider slider;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject customerLine;
+
+    [SerializeField]
+    int ratioCustomerWaiting = 1;
+
+    [SerializeField]
+    int ratioCustomerSatisfied = 1;
+
+
     void Start () {
 
         slider = GetComponent<Slider> ();
@@ -38,5 +50,34 @@ public class BattlefieldSlider : MonoBehaviour {
         slider.value = score;
 
     }
+
+
+
+
+
+
+//**********************************************************************************************
+//**********************************************************************************************
+// Game Over Stuff
+//**********************************************************************************************
+//**********************************************************************************************
+    public int CountCustomers() {
+
+         int childCount = 0;
+
+         foreach (Transform b in customerLine.transform)
+         {
+     //        Debug.Log("Child: "+b);
+             childCount ++;
+//            childCount += CountChildren(b);
+         }
+         return childCount;
+
+}
+
+    public int LooseBattlePointsOverTime() {return 0;}
+
+
+
 
 }
