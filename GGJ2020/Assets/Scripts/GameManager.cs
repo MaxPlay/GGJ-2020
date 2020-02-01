@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,12 +14,16 @@ public class GameManager : MonoBehaviour
     public bool HasGameState => gameState != null;
 
     public System.Random Random { get; private set; }
+    public PrefabContainer Prefabs => prefabs;
 
     [SerializeField]
     private GameState gameState;
 
     [SerializeField]
     private GameplaySettings settings;
+
+    [SerializeField]
+    private PrefabContainer prefabs;
 
     private void Awake()
     {

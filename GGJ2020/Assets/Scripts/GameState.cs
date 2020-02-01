@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameState : ScriptableObject
 {
@@ -23,7 +24,6 @@ public class GameState : ScriptableObject
         {
             objectiveSpawnTimer += GameManager.Instance.Settings.ObjectiveFrequency;
             objectiveQueue.AddRandom();
-            Debug.Log(objectiveQueue[objectiveQueue.Count - 1]);
         }
 
         objectiveSpawnTimer -= Time.deltaTime;
