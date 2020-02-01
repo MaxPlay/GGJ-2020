@@ -60,7 +60,7 @@ public class Customer : MonoBehaviour
 
     public void ObjectiveCompleted()
     {
-        Move(false);
+        StartCoroutine(Move(false));
     }
 
     private void OnTriggerEnter(Collider other)
