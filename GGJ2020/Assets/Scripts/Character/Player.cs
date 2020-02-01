@@ -114,7 +114,7 @@ public class Player : Character
                     }
                 }
             }
-            if(currentClosest >= 0 && currentClosest < Interactable.Instances.Count)
+            if(currentClosest >= 0 && currentClosest < Interactable.Instances.Count && Interactable.Instances[currentClosest])
             {
                 OnHandleDebug(DebugState.OnInteract, DebugLogStates.NormalLog, Interactable.Instances[currentClosest].name);
                 currentStation = Interactable.Instances[currentClosest].Interact(this);
