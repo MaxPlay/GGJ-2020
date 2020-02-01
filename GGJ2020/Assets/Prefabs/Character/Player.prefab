@@ -510,8 +510,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 4955930635721988362}
   dropPosition: {fileID: 4955930635023200695}
   rb: {fileID: 4955930634379137747}
-  characterSpriteManager: {fileID: 0}
-  speeds: {x: 2, y: 2}
+  characterSpriteManager: {fileID: 6348208443269544760}
   debug: 1
 --- !u!54 &4955930634379137747
 Rigidbody:

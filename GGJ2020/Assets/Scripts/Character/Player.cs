@@ -22,10 +22,7 @@ public class Player : Character
 
     PlayerStates currentState;
     PlayerStates previousState;
-
-    [SerializeField]
-    GameplaySettings settings;
-
+    
     Vector3 memorizedPosition;
     Interactable currentStation;
 
@@ -34,26 +31,43 @@ public class Player : Character
     [SerializeField]
     bool debug = false;
 
+    Dictionary<PlayerStates, Action> enterStates;
+    Dictionary<PlayerStates, Action> exitStates;
+    Dictionary<PlayerStates, Func<PlayerStates>> upgradeStates;
+
+    private void Awake()
+    {
+        enterStates = new Dictionary<PlayerStates, Action>()
+        {
+            { PlayerStates.Default, EnterDefaultState },
+            { PlayerStates.Fletching, EnterFletchingState },
+            { PlayerStates.Heating, EnterHeatingState },
+            { PlayerStates.Smithing, EnterSmithingState },
+            { PlayerStates.Attaching, EnterAttachingState },
+        };
+
+        exitStates = new Dictionary<PlayerStates, Action>()
+        {
+            { PlayerStates.Default, ExitDefaultState },
+            { PlayerStates.Fletching, ExitFletchingState },
+            { PlayerStates.Heating, ExitHeatingState },
+            { PlayerStates.Smithing, ExitSmithingState },
+            { PlayerStates.Attaching, ExitAttachingState },
+        };
+
+        upgradeStates = new Dictionary<PlayerStates, Func<PlayerStates>>()
+        {
+            { PlayerStates.Default, UpdateDefaultState },
+            { PlayerStates.Fletching, UpdateFletchingState },
+            { PlayerStates.Heating, UpdateHeatingState },
+            { PlayerStates.Smithing, UpdateSmithingState },
+            { PlayerStates.Attaching, UpdateAttachingState },
+        };
+    }
+
     protected override void Update()
     {
-        switch (currentState)
-        {
-            case PlayerStates.Default:
-                currentState = UpdateDefaultState();
-                break;
-            case PlayerStates.Fletching:
-                currentState = UpdateFletchingState();
-                break;
-            case PlayerStates.Heating:
-                currentState = UpdateHeatingState();
-                break;
-            case PlayerStates.Smithing:
-                currentState = UpdateSmithingState();
-                break;
-            case PlayerStates.Attaching:
-                currentState = UpdateAttachingState();
-                break;
-        }
+        currentState = upgradeStates[currentState]();
         HandleNextState();
 
         base.Update();
@@ -64,42 +78,8 @@ public class Player : Character
     {
         if(previousState != currentState)
         {
-            switch(currentState)
-            {
-                case PlayerStates.Default:
-                    EnterDefaultState();
-                    break;
-                case PlayerStates.Fletching:
-                    EnterFletchingState();
-                    break;
-                case PlayerStates.Heating:
-                    EnterHeatingState();
-                    break;
-                case PlayerStates.Smithing:
-                    EnterSmithingState();
-                    break;
-                case PlayerStates.Attaching:
-                    EnterAttachingState();
-                    break;
-            }
-            switch (previousState)
-            {
-                case PlayerStates.Default:
-                    ExitDefaultState();
-                    break;
-                case PlayerStates.Fletching:
-                    ExitFletchingState();
-                    break;
-                case PlayerStates.Heating:
-                    ExitHeatingState();
-                    break;
-                case PlayerStates.Smithing:
-                    ExitSmithingState();
-                    break;
-                case PlayerStates.Attaching:
-                    ExitAttachingState();
-                    break;
-            }
+            enterStates[currentState]();
+            exitStates[previousState]();
         }
     }
 
@@ -171,6 +151,7 @@ public class Player : Character
         memorizedPosition = transform.position;
         currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as HeatingStation).HeatingPosition;
+        characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
     }
 
     private void EnterDefaultState()
@@ -269,6 +250,8 @@ public class Player : Character
 
     private PlayerStates UpdateDefaultState()
     {
+        GameplaySettings settings = GameManager.Instance.Settings;
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             return HandleInteractions();
@@ -315,7 +298,9 @@ public class Player : Character
         {
             return PlayerStates.Default;
         }
-        if(settings.TimeForSmithing > 0)
+
+        GameplaySettings settings = GameManager.Instance.Settings;
+        if (settings.TimeForSmithing > 0)
             (inventory as Sword).HammerSword(Time.deltaTime / settings.TimeForSmithing);
         currentStation.SetProgressbarValue((inventory as Sword).Quality);
         return PlayerStates.Smithing;
@@ -339,7 +324,8 @@ public class Player : Character
             return PlayerStates.Default;
         }
 
-        if(settings.TimeToGrindWeapon > 0)
+        GameplaySettings settings = GameManager.Instance.Settings;
+        if (settings.TimeToGrindWeapon > 0)
         {
             if(inventory is Sword)
             {
