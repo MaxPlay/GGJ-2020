@@ -35,6 +35,7 @@ public class Sword : Item
     public float HeatSword(float strength)
     {
         heat += strength;
+        sharpness = Mathf.Clamp01(sharpness - strength);
         if (heat < 0)
             heat = 0;
         isHeatingUp = true;
@@ -56,6 +57,7 @@ public class Sword : Item
         if(heat > minimumHeat)
         {
             quality = Mathf.Clamp01(quality + strength);
+            sharpness = Mathf.Clamp01(sharpness - strength);
         }
         if (debug)
             Debug.Log("<b>[Sword]</b> New Quality: " + quality);
