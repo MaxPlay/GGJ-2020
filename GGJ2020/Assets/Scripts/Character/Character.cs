@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 
     private Vector2 additiveSpeed;
 
-    protected void Update()
+    protected virtual void Update()
     {
         rb.velocity = MathUtils.VectorLerp(rb.velocity, Vector3.right * additiveSpeed.x + Vector3.forward * additiveSpeed.y, 0.5f);
         additiveSpeed = Vector2.zero;
