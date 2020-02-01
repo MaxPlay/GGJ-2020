@@ -1,10 +1,13 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
     [SerializeField]
-    LinearPath path;
+    private LinearPath path;
+
+    private BoxCollider trigger;
 
     public Objective Objective { get; private set; }
 
@@ -15,6 +18,7 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         path.Owner = transform.position;
+        trigger = GetComponent<BoxCollider>();
     }
 
     public IEnumerator Move(bool forward)
@@ -36,7 +40,12 @@ public class Customer : MonoBehaviour
             transform.position = path.Lerp(forward ? 1 : -1);
         }
 
-        if (!forward)
+        if (forward)
+        {
+            Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
+            sword.Initialize(Objective);
+        }
+        else
         {
             Objective = null;
             GameManager.Instance.GameState.ObjectiveQueue.FreeSlot(Index);
@@ -52,6 +61,19 @@ public class Customer : MonoBehaviour
     public void ObjectiveCompleted()
     {
         Move(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Sword sword = other.GetComponent<Sword>();
+        if (sword != null)
+        {
+            if(Objective.DoesMatch(sword))
+            {
+                Destroy(sword.gameObject);
+                ObjectiveCompleted();
+            }
+        }
     }
 
     private void OnDrawGizmos()
