@@ -40,7 +40,7 @@ public class Sword : Item
 
     public float HammerSword(float strength)
     {
-        quality = Mathf.Clamp01(quality + strength);
+        quality = Mathf.Clamp01(quality + (strength * Mathf.Clamp01(heat - 1)));
         if (debug)
             Debug.Log("<b>[Sword]</b> New Quality: " + quality);
         return quality;

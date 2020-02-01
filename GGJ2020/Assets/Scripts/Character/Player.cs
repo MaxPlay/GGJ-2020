@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public enum PlayerStates
 {
     Default = 0,
-    Fletching = 1
+    Fletching = 1,
+    Heating = 2,
+    Smithing = 3,
 }
 
 public class Player : Character
@@ -40,6 +42,12 @@ public class Player : Character
             case PlayerStates.Fletching:
                 currentState = UpdateFletchingState();
                 break;
+            case PlayerStates.Heating:
+                currentState = UpdateHeatingState();
+                break;
+            case PlayerStates.Smithing:
+                currentState = UpdateSmithingState();
+                break;
         }
         HandleNextState();
 
@@ -59,6 +67,12 @@ public class Player : Character
                 case PlayerStates.Fletching:
                     EnterFletchingState();
                     break;
+                case PlayerStates.Heating:
+                    EnterHeatingState();
+                    break;
+                case PlayerStates.Smithing:
+                    EnterSmithingState();
+                    break;
             }
             switch (previousState)
             {
@@ -67,6 +81,12 @@ public class Player : Character
                     break;
                 case PlayerStates.Fletching:
                     ExitFletchingState();
+                    break;
+                case PlayerStates.Heating:
+                    ExitHeatingState();
+                    break;
+                case PlayerStates.Smithing:
+                    ExitSmithingState();
                     break;
             }
         }
@@ -77,12 +97,46 @@ public class Player : Character
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Fletching State");
         transform.position = memorizedPosition;
+        if(inventory is Wood && (inventory as Wood).Worked >= 1)
+        {
+            inventory = (inventory as Wood).TurnIntoHandle();
+        }
     }
 
     private void ExitDefaultState()
     {
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Default State");
+    }
+
+    private void ExitHeatingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Heating State");
+        transform.position = memorizedPosition;
+    }
+
+    private void ExitSmithingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Exit Smithing State");
+        transform.position = memorizedPosition;
+    }
+
+    private void EnterSmithingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Enter Smithing State");
+        memorizedPosition = transform.position;
+        transform.position = (currentStation as SmithingStation).SmithingPosition;
+    }
+
+    private void EnterHeatingState()
+    {
+        if (debug)
+            Debug.Log("<b>[Player]</b> Enter Heating State");
+        memorizedPosition = transform.position;
+        transform.position = (currentStation as HeatingStation).HeatingPosition;
     }
 
     private void EnterDefaultState()
@@ -146,9 +200,17 @@ public class Player : Character
         {
             return PlayerStates.Default;
         }
-        if(interactable is FletchingStation && inventory != null && inventory is Sword)
+        else if(interactable is FletchingStation && inventory != null && (inventory is Sword || inventory is Wood))
         {
             return PlayerStates.Fletching;
+        }
+        else if(interactable is HeatingStation)
+        {
+            return PlayerStates.Heating;
+        }
+        else if (interactable is SmithingStation && inventory != null && inventory is Sword)
+        {
+            return PlayerStates.Smithing;
         }
 
         return PlayerStates.Default;
@@ -179,6 +241,27 @@ public class Player : Character
         return PlayerStates.Default;
     }
 
+    private PlayerStates UpdateSmithingState()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+        (inventory as Sword).HammerSword(Time.deltaTime * (currentStation as SmithingStation).SmithingSpeed);
+        return PlayerStates.Smithing;
+    }
+
+    private PlayerStates UpdateHeatingState()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            return PlayerStates.Default;
+        }
+
+        (currentStation as HeatingStation).HeatFurnace();
+        return PlayerStates.Heating;
+    }
+
     private PlayerStates UpdateFletchingState()
     {
         if(Input.GetKeyUp(KeyCode.Space))
@@ -188,7 +271,14 @@ public class Player : Character
 
         if((currentStation as FletchingStation).TimeToGrind > 0)
         {
-            (inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+            if(inventory is Sword)
+            {
+                (inventory as Sword).SharpenSword(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+            }
+            else if(inventory is Wood)
+            {
+                (inventory as Wood).WorkOnWood(Time.deltaTime / (currentStation as FletchingStation).TimeToGrind);
+            }
         }
         return PlayerStates.Fletching;
     }

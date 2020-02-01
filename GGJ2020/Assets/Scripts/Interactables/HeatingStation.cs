@@ -8,16 +8,16 @@ public class HeatingStation : Interactable
     FurnaceStation furnace;
 
     [SerializeField]
-    Transform grindingPosition;
+    Transform heatingPosition;
 
     [SerializeField]
     float timeToFullyHeat;
 
-    public Vector3 GrindingPosition
+    public Vector3 HeatingPosition
     {
         get
         {
-            return grindingPosition.position;
+            return heatingPosition.position;
         }
     }
 
@@ -32,7 +32,7 @@ public class HeatingStation : Interactable
     {
         if(timeToFullyHeat > 0)
         {
-            furnace.HeatFurnace(Time.deltaTime / timeToFullyHeat);
+            furnace.HeatFurnace(((Time.deltaTime / timeToFullyHeat) / 4) / (furnace.currentHeatLevel + 1));
         }
     }
 
@@ -48,7 +48,10 @@ public class HeatingStation : Interactable
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(grindingPosition.position, 0.1f);
+        if(heatingPosition != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(heatingPosition.position, 0.1f);
+        }
     }
 }
