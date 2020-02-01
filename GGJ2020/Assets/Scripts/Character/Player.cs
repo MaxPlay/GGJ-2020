@@ -29,7 +29,7 @@ public class Player : Character
     [SerializeField]
     bool debug = false;
 
-    private void Update()
+    protected void Update()
     {
         switch (currentState)
         {
