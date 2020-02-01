@@ -14,7 +14,7 @@ private RectTransform rectProg;
         rectProg = transform.Find("Progressbar_Front").GetComponent<RectTransform>();
 
 
-rectProg.localScale = new Vector3(0,1,1);
+  rectProg.sizeDelta = new Vector2(0, 100);
     }
 
 
@@ -25,11 +25,17 @@ rectProg.localScale = new Vector3(0,1,1);
 
 public void SetProgressbar(float presentBar) {
 
-float divideByHundred = presentBar / 100;
+int pixelsBar = (int) presentBar * 100;
 
-Vector3 katze = new Vector3(divideByHundred, 1, 1);
+Debug.Log("SetProgressbar: Setting % to: "+presentBar);
 
-   rectProg.localScale = katze;
+// Vector3 katze = new Vector3(presentBar, 1, 1);
+
+//    rectProg.localScale = katze;
+
+
+
+   rectProg.sizeDelta = new Vector2(pixelsBar, 100);
 
 }
 
