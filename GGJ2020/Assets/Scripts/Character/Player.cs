@@ -163,22 +163,22 @@ public class Player : Character
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Move(Vector2.up * speeds.y);
-            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Backward);
+            characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Backward);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             Move(Vector2.right * speeds.x);
-            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Right);
+            characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Right);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             Move(Vector2.left * speeds.x);
-            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Left);
+            characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             Move(Vector2.down * speeds.y);
-            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Forward);
+            characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Forward);
         }
         return PlayerStates.Default;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterSpriteManager : MonoBehaviour
 {
-    public enum CharacterDirection
+    public enum CharacterState
     {
         Forward,
         Right,
@@ -13,34 +13,34 @@ public class CharacterSpriteManager : MonoBehaviour
     }
 
     [Serializable]
-    struct Direction
+    struct State
     {
-        public CharacterDirection CharacterDirection;
-        public SpriteOrientation Orientation;
+        public CharacterState CharacterState;
+        public GameObject Orientation;
     }
 
     [SerializeField]
-    Direction[] spriteOrientations;
+    State[] spriteOrientations;
 
-    Dictionary<CharacterDirection, SpriteOrientation> spriteOrientationsDictionary;
+    Dictionary<CharacterState, GameObject> spriteOrientationsDictionary;
 
     private void Awake()
     {
-        spriteOrientationsDictionary = new Dictionary<CharacterDirection, SpriteOrientation>();
+        spriteOrientationsDictionary = new Dictionary<CharacterState, GameObject>();
         for (int i = 0; i < spriteOrientations.Length; i++)
         {
-            if (!spriteOrientationsDictionary.ContainsKey(spriteOrientations[i].CharacterDirection))
-                spriteOrientationsDictionary.Add(spriteOrientations[i].CharacterDirection, spriteOrientations[i].Orientation);
+            if (!spriteOrientationsDictionary.ContainsKey(spriteOrientations[i].CharacterState))
+                spriteOrientationsDictionary.Add(spriteOrientations[i].CharacterState, spriteOrientations[i].Orientation);
         }
 
-        SetDirection(CharacterDirection.Forward);
+        SetState(CharacterState.Forward);
     }
 
-    public void SetDirection(CharacterDirection direction)
+    public void SetState(CharacterState direction)
     {
         foreach (var item in spriteOrientationsDictionary)
         {
-            item.Value.gameObject.SetActive(item.Key == direction);
+            item.Value.SetActive(item.Key == direction);
         }
     }
 }
