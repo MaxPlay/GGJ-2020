@@ -13,6 +13,9 @@ public class Character : MonoBehaviour
     [SerializeField]
     protected Rigidbody rb;
 
+    [SerializeField]
+    protected CharacterSpriteManager characterSpriteManager;
+
     private Vector2 additiveSpeed;
 
     public Item Inventory
@@ -21,6 +24,11 @@ public class Character : MonoBehaviour
         {
             return inventory;
         }
+    }
+
+    private void Start()
+    {
+        characterSpriteManager = GetComponentInChildren<CharacterSpriteManager>();
     }
 
     protected virtual void Update()

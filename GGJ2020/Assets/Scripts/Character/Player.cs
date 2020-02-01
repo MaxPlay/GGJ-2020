@@ -30,7 +30,7 @@ public class Player : Character
     [SerializeField]
     bool debug = false;
 
-    protected void Update()
+    protected override void Update()
     {
         switch (currentState)
         {
@@ -163,18 +163,22 @@ public class Player : Character
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Move(Vector2.up * speeds.y);
+            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Backward);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             Move(Vector2.right * speeds.x);
+            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Right);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             Move(Vector2.left * speeds.x);
+            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Left);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             Move(Vector2.down * speeds.y);
+            characterSpriteManager.SetDirection(CharacterSpriteManager.CharacterDirection.Forward);
         }
         return PlayerStates.Default;
     }
