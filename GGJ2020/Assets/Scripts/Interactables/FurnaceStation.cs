@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FurnaceStation : Interactable
 {
+    [SerializeField]
+    Slider swordSlider;
+
     [SerializeField]
     float heatDropSpeed;
 
@@ -33,11 +37,13 @@ public class FurnaceStation : Interactable
         {
             inventory = (character as Player).PlaceSwordInWorkstation();
             inventory.transform.parent = dropParent;
+            swordSlider.gameObject.SetActive(true);
             inventory.transform.localPosition = Vector3.zero;
         }
         else if(character.Inventory == null && inventory != null)
         {
             character.PickUpItem(inventory);
+            swordSlider.gameObject.SetActive(false);
             inventory = null;
         }
         return this;
@@ -60,11 +66,28 @@ public class FurnaceStation : Interactable
         base.OnDestroy();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Player>() != null && inventory != null)
+        {
+            swordSlider.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<Player>() != null)
+        {
+            swordSlider.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         if(currentHeatLevel > 0 && inventory != null)
         {
             inventory.HeatSword(Time.deltaTime / (9 / currentHeatLevel));
+            swordSlider.value = inventory.Heat;
         }
         if(heatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
         {
