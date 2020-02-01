@@ -9,6 +9,8 @@ public class Sword : Item
     private float quality;
     private float heat;
 
+    private bool debug = true;
+
     public bool HasHandle { get => hasHandle; }
     public float Sharpness { get => sharpness; }
     public float Quality { get => quality; }
@@ -28,6 +30,8 @@ public class Sword : Item
     public float SharpenSword(float strength)
     {
         sharpness = Mathf.Clamp01(sharpness + strength);
+        if (debug)
+            Debug.Log("<b>[Sword]</b> New Sharpness: " + sharpness);
         return sharpness;
     }
 

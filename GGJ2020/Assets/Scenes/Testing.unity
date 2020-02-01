@@ -480,7 +480,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 2070894920}
   dropPosition: {fileID: 46707189}
   rb: {fileID: 728044177}
-  speeds: {x: 2, y: 1}
+  speeds: {x: 2, y: 2}
   debug: 1
 --- !u!1 &1386446552
 GameObject:
