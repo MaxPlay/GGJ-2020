@@ -33,17 +33,41 @@ public abstract class Interactable : MonoBehaviour
         {
             instances = new List<Interactable>();
         }
-        instances.Add(this);
+        if(!instances.Contains(this))
+            instances.Add(this);
     }
 
     public virtual void OnDestroy()
     {
+        if (instances == null)
+        {
+            instances = new List<Interactable>();
+        }
         instances.Remove(this);
     }
 
-    abstract public Interactable Interact(Player player);
+    public virtual void OnEnable()
+    {
+        if (instances == null)
+        {
+            instances = new List<Interactable>();
+        }
+        if (!instances.Contains(this))
+            instances.Add(this);
+    }
 
-    private void OnDrawGizmos()
+    public virtual void OnDisable()
+    {
+        if (instances == null)
+        {
+            instances = new List<Interactable>();
+        }
+        instances.Remove(this);
+    }
+
+    abstract public Interactable Interact(Character character);
+
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, interactionRange);

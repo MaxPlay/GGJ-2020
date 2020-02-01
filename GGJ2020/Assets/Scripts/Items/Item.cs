@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Item : Interactable
 {
-    public override Interactable Interact(Player player)
+    public override Interactable Interact(Character character)
     {
+        character.PickUpItem(this);
         return this;
     }
 

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class FletchingStation : Interactable
 {
-    public override Interactable Interact(Player player)
+    public override Interactable Interact(Character character)
     {
-        Debug.Log("LOL");
         return this;
     }
 

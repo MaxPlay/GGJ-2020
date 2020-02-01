@@ -5,12 +5,15 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviour
 {
-    Item inventory;
+    protected Item inventory;
+
+    [SerializeField]
+    protected Transform inventorySlot, dropPosition;
 
     [SerializeField]
     protected Rigidbody rb;
 
-    Vector2 additiveSpeed;
+    private Vector2 additiveSpeed;
 
     protected void Update()
     {
@@ -23,23 +26,33 @@ public class Character : MonoBehaviour
         additiveSpeed += speed;
     }
 
-    private void Interact()
+    public void PickUpItem(Item item)
+    {
+        inventory = item;
+        inventory.transform.SetParent(inventorySlot);
+        inventory.transform.localPosition = Vector3.zero;
+    }
+
+    protected void PutItem()
     {
 
     }
 
-    private void PickUpItem()
+    protected void DropItem()
     {
-
+        inventory.transform.position = dropPosition.position;
+        inventory.transform.parent = null;
+        inventory = null;
     }
 
-    private void PutItem()
+    private void OnDrawGizmos()
     {
-
-    }
-
-    private void DropItem()
-    {
-
+        if(inventorySlot != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(inventorySlot.position, 0.1f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(dropPosition.position, 0.1f);
+        }
     }
 }
