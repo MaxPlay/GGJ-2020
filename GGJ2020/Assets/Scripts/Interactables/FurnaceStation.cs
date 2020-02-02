@@ -25,6 +25,14 @@ public class FurnaceStation : Interactable
     [SerializeField]
     LightFlicker lightFlicker;
 
+    [Header("Particles")]
+    [SerializeField]
+    ParticleSystem smokeParticles;
+    [SerializeField]
+    ParticleSystem puffParticles;
+    [SerializeField]
+    ParticleSystem sparkParticles;
+
     public int CurrentHeatLevel
     {
         get
