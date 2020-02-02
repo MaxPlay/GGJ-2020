@@ -12,9 +12,13 @@ public class FurnaceStation : Interactable
     Transform dropParent;
 
     [SerializeField]
+    Renderer fireRenderer;
+
+    [SerializeField]
     bool debug = false;
 
     float currentHeat = 0.5f;
+    int previousLevel = -1;
     Sword inventory;
     bool isHeatingUp;
 
@@ -51,6 +55,17 @@ public class FurnaceStation : Interactable
         isHeatingUp = true;
     }
 
+    private void SetFlameColor(Color backBot, Color backTop, Color frontBot, Color frontTop)
+    {
+        fireRenderer.material.SetColor("_BotColor", backBot);
+
+        fireRenderer.material.SetColor("_TopColor", backTop);
+
+        fireRenderer.material.SetColor("_FlameColor", frontBot);
+
+        fireRenderer.material.SetColor("_ToppingColor", frontTop);
+    }
+
     public override void Start()
     {
         swordSlider.gameObject.SetActive(false);
@@ -60,6 +75,23 @@ public class FurnaceStation : Interactable
     public override void OnDestroy()
     {
         base.OnDestroy();
+    }
+
+    private void UpdateFlames()
+    {
+        if(previousLevel != currentHeatLevel)
+        {
+            previousLevel = currentHeatLevel;
+            try
+            {
+                SetFlameColor(GameManager.Instance.Settings.BackBotColors[currentHeatLevel], GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
+                    GameManager.Instance.Settings.FrontBotColors[currentHeatLevel], GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+            }
+            catch
+            {
+
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

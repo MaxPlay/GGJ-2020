@@ -119,6 +119,26 @@ public class GameplaySettings : ScriptableObject
     [SerializeField, Tooltip("The strength with which items will be melted.")]
     float furnaceMeltingStrength;
 
+    [SerializeField]
+    Color[] backBotColors;
+
+    [SerializeField]
+    Color[] backTopColors;
+
+    [SerializeField]
+    Color[] frontBotColors;
+
+    [SerializeField]
+    Color[] frontTopColors;
+
+    public Color[] BackBotColors => backBotColors;
+
+    public Color[] BackTopColors => backTopColors;
+
+    public Color[] FrontBotColors => frontBotColors;
+
+    public Color[] FrontTopColors => frontTopColors;
+
     public float FurnaceMeltingStrength => furnaceMeltingStrength;
 
     public float FurnaceHeatDropSpeed => furnaceHeatDropSpeed;
