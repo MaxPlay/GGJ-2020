@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DuckWaitBarManager : MonoBehaviour {
+public class DuckWaitBarManager : MonoBehaviour
+{
 
     GameObject[] duckWaitBar = new GameObject[5];
 
-    private int duckBarCounter = -1;
+    private int duckRequestCounter = -1;
 
-    void Update () {
-
-    }
-
-    private RectTransform[] rectProg = new RectTransform[5];
-
-    //   [SerializeField]
-
-    void Start () {
+    void Start()
+    {
 
         int i = 0;
 
-        foreach (Transform child in transform) {
+        foreach (Transform child in transform)
+        {
 
             duckWaitBar[i] = child.gameObject;
 
@@ -31,11 +26,14 @@ public class DuckWaitBarManager : MonoBehaviour {
     }
 
 
-    public GameObject GiveWaitBarToDuck () {
+    public GameObject GiveWaitBarToDuck()
+    {
 
-duckBarCounter += 1;
+        duckRequestCounter += 1;
 
-return duckWaitBar[duckBarCounter];
+        if (duckRequestCounter > 4) { duckRequestCounter = 0; }
+
+        return duckWaitBar[duckRequestCounter];
 
     }
 
