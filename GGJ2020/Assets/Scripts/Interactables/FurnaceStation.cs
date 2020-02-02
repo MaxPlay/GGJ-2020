@@ -25,6 +25,8 @@ public class FurnaceStation : Interactable
     [SerializeField]
     LightFlicker lightFlicker;
 
+    public Animator anim;
+
     [Header("Particles")]
     [SerializeField]
     ParticleSystem smokeParticles;
@@ -32,7 +34,7 @@ public class FurnaceStation : Interactable
     ParticleSystem puffParticles;
     [SerializeField]
     ParticleSystem sparkParticles;
-
+    
     public int CurrentHeatLevel
     {
         get
@@ -93,6 +95,7 @@ public class FurnaceStation : Interactable
     public override void Start()
     {
         swordSlider.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
         base.Start();
     }
 
@@ -205,5 +208,10 @@ public class FurnaceStation : Interactable
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(dropParent.position, 0.1f);
         }
+    }
+
+    public void SpawnSparks()
+    {
+        sparkParticles.Play();
     }
 }

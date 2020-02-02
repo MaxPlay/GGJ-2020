@@ -10,6 +10,8 @@ public class SmithingStation : Interactable
     [SerializeField]
     bool debug = false;
 
+    public Animator anim;
+
     public Vector3 SmithingPosition
     {
         get
@@ -26,6 +28,7 @@ public class SmithingStation : Interactable
 
     public override void Start()
     {
+        anim = GetComponent<Animator>();
         base.Start();
     }
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 605380062550060002}
   - component: {fileID: 605380062550060005}
   - component: {fileID: 605380062550060000}
+  - component: {fileID: 97527633}
   m_Layer: 0
   m_Name: WorkBench
   m_TagString: Interactable
@@ -67,10 +68,30 @@ MonoBehaviour:
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 2624663901279377454}
   startWithSlider: 0
+  isCurrentlyInteractable: 1
   interactionRange: 1.56
   woodPosition: {fileID: 605380062814321287}
   swordPosition: {fileID: 4552288474608153246}
   workingPosition: {fileID: 4552288475676401750}
+--- !u!95 &97527633
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605380062550060007}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 481cd9ea14a672d44aa00246c535dd46, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &605380062814321288
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4342074490364897325}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00000011920929, y: 0, z: 0}
   m_LocalScale: {x: 2.560203, y: 1, z: 1}
   m_Children:
@@ -421,12 +442,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.988454
+      value: 0.9781399
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.15152138
+      value: 0.20794804
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
