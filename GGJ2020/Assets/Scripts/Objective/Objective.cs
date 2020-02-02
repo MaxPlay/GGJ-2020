@@ -32,6 +32,6 @@ public class Objective
         if (sword.Heat > 0.0f)
             return false;
 
-        return sword.Sharpness == 1.0f && sword.HasHandle && sword.Sharpness == 1.0f;
+        return sword.Sharpness == 1.0f && sword.HasHandle && sword.Quality == 1.0f;
     }
 }
