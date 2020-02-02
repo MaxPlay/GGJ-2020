@@ -4,38 +4,33 @@ using UnityEngine;
 
 public class DuckWaitBarManager : MonoBehaviour
 {
+    GameObject[] duckWaitBars;
 
-    GameObject[] duckWaitBar = new GameObject[5];
+    [SerializeField]
+    GameObject template;
 
     private int duckRequestCounter = -1;
 
     void Start()
     {
-
-        int i = 0;
-
-        foreach (Transform child in transform)
+        duckWaitBars = new GameObject[GameManager.Instance.Settings.MaxObjectives];
+        for (int i = 0; i < duckWaitBars.Length; i++)
         {
-
-            duckWaitBar[i] = child.gameObject;
-
-            i += 1;
-
+            duckWaitBars[i] = Instantiate(template, transform);
         }
-
     }
 
 
     public GameObject GiveWaitBarToDuck()
     {
+        ++duckRequestCounter;
 
-        duckRequestCounter += 1;
+        if (duckRequestCounter >= GameManager.Instance.Settings.MaxObjectives)
+        {
+            duckRequestCounter = 0;
+        }
 
-        if (duckRequestCounter > 4) { duckRequestCounter = 0; }
-
-        return duckWaitBar[duckRequestCounter];
+        return duckWaitBars[duckRequestCounter];
 
     }
-
-
 }
