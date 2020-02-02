@@ -35,7 +35,7 @@ public class LightFlicker : MonoBehaviour
 
         light.intensity = baseIntensity + curve.Evaluate(time);
         light.innerSpotAngle = baseAngle + curve.Evaluate(time);
-        light.color = colorGradient.Evaluate(curve.Evaluate(time) + 0.5f);
+        light.color = colorGradient.Evaluate(curve.Evaluate(time) * 0.5f + 0.5f);
     }
 
     public void SetLightRange(Gradient colorGradient)
