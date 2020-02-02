@@ -264,7 +264,9 @@ MonoBehaviour:
   interactionRange: 2
   swordSlider: {fileID: 9069866086702761315}
   dropParent: {fileID: 495551194917779202}
+  fireRenderer: {fileID: 6393217639416730698}
   debug: 0
+  lightFlicker: {fileID: 2053393889}
 --- !u!135 &7094838535083455700
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -890,7 +892,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34781b49ea5ce2146a91d4357be36846, type: 2}
+  - {fileID: 2100000, guid: 2924e70b75b10a6478708295c006799d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
