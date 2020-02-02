@@ -1393,6 +1393,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: DuckWaitBarManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8284037055166696851, guid: 22f5822e00d2769bf878d65b5a92d923,
+        type: 3}
+      propertyPath: template
+      value: 
+      objectReference: {fileID: 1272502167334281171, guid: f0d3af389316f0a33971b44e3d605941,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22f5822e00d2769bf878d65b5a92d923, type: 3}
 --- !u!4 &1888360052947537001 stripped

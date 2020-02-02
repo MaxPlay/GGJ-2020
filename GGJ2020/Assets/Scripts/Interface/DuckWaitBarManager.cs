@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DuckWaitBarManager : MonoBehaviour {
+public class DuckWaitBarManager : MonoBehaviour
+{
+    GameObject[] duckWaitBars;
 
-    GameObject[] duckWaitBar = new GameObject[5];
+    [SerializeField]
+    GameObject template;
 
     private int duckRequestCounter = -1;
 
-    void Start () {
+    void Start()
+    {
+        duckWaitBars = new GameObject[GameManager.Instance.Settings.MaxObjectives];
+        for (int i = 0; i < duckWaitBars.Length; i++)
+        {
+            duckWaitBars[i] = Instantiate(template, transform);
+        }
+    }
 
-        int i = 0;
 
-        foreach (Transform child in transform) {
+    public GameObject GiveWaitBarToDuck()
+    {
+        ++duckRequestCounter;
 
-            duckWaitBar[i] = child.gameObject;
-
-            i += 1;
-
+        if (duckRequestCounter >= GameManager.Instance.Settings.MaxObjectives)
+        {
+            duckRequestCounter = 0;
         }
 
-    }
-
-
-    public GameObject GiveWaitBarToDuck () {
-
-duckRequestCounter += 1;
-
-if (duckRequestCounter > 4) {duckRequestCounter = 0;}
-
-return duckWaitBar[duckRequestCounter];
+        return duckWaitBars[duckRequestCounter];
 
     }
-
-
 }

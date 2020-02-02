@@ -89,10 +89,11 @@ public class Customer : MonoBehaviour {
             GameManager.Instance.GameState.ObjectiveQueue.FreeSlot (Index);
         }
     }
-
-    private void InitializeWaiting () {
-        Sword sword = Instantiate (GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
-        sword.Initialize (Objective);
+    
+    private void InitializeWaiting()
+    {
+        Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
+        sword.Initialize(this, Objective);
         hasSword = false;
         UpdateAnimation (CharacterSpriteManager.CharacterState.Backward);
         waiting = true;
@@ -155,7 +156,6 @@ public class Customer : MonoBehaviour {
     private void GetWaitBar () {
 
         duckWaitBar = duckWaitBarManager.GiveWaitBarToDuck ();
-
     }
 
     private void UpdateWaitBar (float timeLeft) {

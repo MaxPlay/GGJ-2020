@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 4955930634379137744}
   - component: {fileID: 4955930634379137747}
   - component: {fileID: 9041474641096680914}
-  - component: {fileID: 872413102}
+  - component: {fileID: 7579482828942887124}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -512,7 +512,7 @@ MonoBehaviour:
   dropPosition: {fileID: 4955930635023200695}
   rb: {fileID: 4955930634379137747}
   characterSpriteManager: {fileID: 6348208443269544760}
-  anim: {fileID: 872413102}
+  anim: {fileID: 7579482828942887124}
   debug: 1
 --- !u!54 &4955930634379137747
 Rigidbody:
@@ -544,7 +544,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &872413102
+--- !u!95 &7579482828942887124
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
