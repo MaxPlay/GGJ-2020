@@ -6,15 +6,7 @@ public class DuckWaitBarManager : MonoBehaviour {
 
     GameObject[] duckWaitBar = new GameObject[5];
 
-    private int duckBarCounter = -1;
-
-    void Update () {
-
-    }
-
-    private RectTransform[] rectProg = new RectTransform[5];
-
-    //   [SerializeField]
+    private int duckRequestCounter = -1;
 
     void Start () {
 
@@ -33,9 +25,11 @@ public class DuckWaitBarManager : MonoBehaviour {
 
     public GameObject GiveWaitBarToDuck () {
 
-duckBarCounter += 1;
+duckRequestCounter += 1;
 
-return duckWaitBar[duckBarCounter];
+if (duckRequestCounter > 4) {duckRequestCounter = 0;}
+
+return duckWaitBar[duckRequestCounter];
 
     }
 
