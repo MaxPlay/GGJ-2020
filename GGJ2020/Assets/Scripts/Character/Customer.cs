@@ -44,6 +44,7 @@ public class Customer : MonoBehaviour
         if (timer <= 0)
         {
             ObjectiveCompleted();
+            return;
         }
 
         timer -= Time.deltaTime;
