@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,5 +51,13 @@ public class HeatingStation : Interactable
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(heatingPosition.position, 0.1f);
         }
+    }
+
+    internal void StartWork(bool val)
+    {
+        if (val)
+            furnace.anim.SetTrigger("StartWork");
+        else
+            furnace.anim.SetTrigger("StopWork");
     }
 }

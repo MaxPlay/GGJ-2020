@@ -11,6 +11,8 @@ public class WoodworkStation : Interactable
 
     private Item woodInventory, swordInventory;
 
+    public Animator anim;
+
     public Vector3 WorkingPosition
     {
         get
@@ -59,7 +61,6 @@ public class WoodworkStation : Interactable
     {
         if(swordInventory != null && woodInventory != null)
         {
-
         }
         else if (character.Inventory is Sword && swordInventory == null && !(character.Inventory as Sword).HasHandle)
         {
@@ -91,6 +92,7 @@ public class WoodworkStation : Interactable
 
     public override void Start()
     {
+        anim = GetComponent<Animator>();
         base.Start();
     }
 

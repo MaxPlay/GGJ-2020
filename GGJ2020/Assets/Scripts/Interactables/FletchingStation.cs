@@ -7,6 +7,8 @@ public class FletchingStation : Interactable
     [SerializeField]
     Transform grindingPosition;
 
+    public Animator anim;
+
     public Vector3 GrindingPosition
     {
         get
@@ -22,6 +24,7 @@ public class FletchingStation : Interactable
 
     public override void Start()
     {
+        anim = GetComponent<Animator>();
         base.Start();
     }
 

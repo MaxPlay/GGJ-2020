@@ -25,6 +25,8 @@ public class FurnaceStation : Interactable
     [SerializeField]
     LightFlicker lightFlicker;
 
+    public Animator anim;
+
     public int CurrentHeatLevel
     {
         get
@@ -85,6 +87,7 @@ public class FurnaceStation : Interactable
     public override void Start()
     {
         swordSlider.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
         base.Start();
     }
 

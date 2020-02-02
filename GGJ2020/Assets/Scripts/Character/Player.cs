@@ -96,6 +96,7 @@ public class Player : Character
         {
             inventory = (inventory as Wood).TurnIntoHandle();
         }
+        (currentStation as FletchingStation).anim.SetTrigger("StopWork");
     }
 
     private void ExitDefaultState()
@@ -112,6 +113,7 @@ public class Player : Character
             Debug.Log("<b>[Player]</b> Exit Heating State");
         transform.position = memorizedPosition;
         currentStation.SetProgressbarEnabled(false);
+        (currentStation as HeatingStation).StartWork(false);
     }
 
     private void ExitSmithingState()
@@ -120,6 +122,7 @@ public class Player : Character
             Debug.Log("<b>[Player]</b> Exit Smithing State");
         transform.position = memorizedPosition;
         currentStation.SetProgressbarEnabled(false);
+        (currentStation as SmithingStation).anim.SetTrigger("StopWork");
     }
 
     private void ExitAttachingState()
@@ -128,6 +131,7 @@ public class Player : Character
             Debug.Log("<b>[Player]</b> Exit Woodworking State");
         transform.position = memorizedPosition;
         currentStation.SetProgressbarEnabled(false);
+        (currentStation as WoodworkStation).anim.SetTrigger("StopWork");
     }
 
     private void EnterAttachingState()
@@ -138,6 +142,7 @@ public class Player : Character
         memorizedPosition = transform.position;
         currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as WoodworkStation).WorkingPosition;
+        (currentStation as WoodworkStation).anim.SetTrigger("StartWork");
     }
 
     private void EnterSmithingState()
@@ -147,6 +152,7 @@ public class Player : Character
         memorizedPosition = transform.position;
         currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as SmithingStation).SmithingPosition;
+        (currentStation as SmithingStation).anim.SetTrigger("StartWork");
     }
 
     private void EnterHeatingState()
@@ -157,6 +163,7 @@ public class Player : Character
         currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as HeatingStation).HeatingPosition;
         characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
+        (currentStation as HeatingStation).StartWork(true);
     }
 
     private void EnterDefaultState()
@@ -173,6 +180,7 @@ public class Player : Character
         memorizedPosition = transform.position;
         currentStation.SetProgressbarEnabled(true);
         transform.position = (currentStation as FletchingStation).GrindingPosition;
+        (currentStation as FletchingStation).anim.SetTrigger("StartWork");
     }
 
     private PlayerStates HandleInteractions()
