@@ -26,6 +26,9 @@ public class Player : Character
     Vector3 memorizedPosition;
     Interactable currentStation;
 
+    [SerializeField]
+    Animator anim;
+
     [Space(20)]
 
     [SerializeField]
@@ -99,6 +102,8 @@ public class Player : Character
     {
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Default State");
+        anim.SetTrigger("startWorking");
+        characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Forward);
     }
 
     private void ExitHeatingState()
@@ -158,6 +163,7 @@ public class Player : Character
     {
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Default State");
+        anim.SetTrigger("stopWorking");
     }
 
     private void EnterFletchingState()
@@ -176,7 +182,7 @@ public class Player : Character
             int currentClosest = -1;
             for (int i = 0; i < Interactable.Instances.Count; i++)
             {
-                if(inventory != Interactable.Instances[i] && Interactable.Instances[i].InteractionRange * Interactable.Instances[i].InteractionRange > Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position))
+                if(inventory != Interactable.Instances[i] && Interactable.Instances[i].isCurrentlyInteractable && Interactable.Instances[i].InteractionRange * Interactable.Instances[i].InteractionRange > Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position))
                 {
                     if(currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
                     {
@@ -252,6 +258,8 @@ public class Player : Character
     {
         GameplaySettings settings = GameManager.Instance.Settings;
 
+        bool isWalking = false;
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             return HandleInteractions();
@@ -260,22 +268,28 @@ public class Player : Character
         {
             Move(Vector2.up * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Backward);
+            isWalking = true;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             Move(Vector2.right * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Right);
+            isWalking = true;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             Move(Vector2.left * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
+            isWalking = true;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             Move(Vector2.down * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Forward);
+            isWalking = true;
         }
+        anim.SetBool("isWalking", isWalking);
+
         return PlayerStates.Default;
     }
 

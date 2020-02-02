@@ -19,6 +19,8 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField]
     bool startWithSlider;
 
+    public bool isCurrentlyInteractable = true;
+
 
     protected bool isBeingUsed;
 

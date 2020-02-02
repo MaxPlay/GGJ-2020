@@ -49,6 +49,7 @@ public class Character : MonoBehaviour
         if(inventory == null)
         {
             inventory = item;
+            inventory.isCurrentlyInteractable = false;
             inventory.transform.SetParent(inventorySlot);
             inventory.transform.localPosition = Vector3.zero;
         }
@@ -65,6 +66,7 @@ public class Character : MonoBehaviour
         {
             inventory.transform.position = dropPosition.position;
             inventory.transform.parent = null;
+            inventory.isCurrentlyInteractable = true;
             inventory = null;
         }
     }
