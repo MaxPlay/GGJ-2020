@@ -29,7 +29,7 @@ public class HeatingStation : Interactable
     {
         if(settings.TimeToFullyHeat > 0)
         {
-            furnace.HeatFurnace(((Time.deltaTime / settings.TimeToFullyHeat) / 4) / (furnace.currentHeatLevel + 1));
+            furnace.HeatFurnace(((Time.deltaTime / settings.TimeToFullyHeat) / 4) / (furnace.CurrentHeatLevel + 1));
         }
     }
 

@@ -118,8 +118,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.7704001
     - serializedVersion: 3
-      time: 0.1
-      value: 0.26250005
+      time: 0.092263795
+      value: 0.09009099
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2
-      value: -0.44348538
+      time: 0.20193787
+      value: -0.103199124
       inSlope: 0.073705986
       outSlope: 0.073705986
       tangentMode: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.23887461
     - serializedVersion: 3
-      time: 0.55
-      value: 0.14621198
+      time: 0.5500073
+      value: 0.07361983
       inSlope: 1.118071
       outSlope: 1.118071
       tangentMode: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.7
-      value: -0.10518104
+      value: -0.07341987
       inSlope: -0.42812616
       outSlope: -0.42812616
       tangentMode: 0
@@ -163,8 +163,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.85
-      value: 0.28139913
+      time: 0.8383728
+      value: 0.0545429
       inSlope: 0.7332043
       outSlope: 0.7332043
       tangentMode: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.96751845
-      value: -0.24392885
+      time: 0.95400643
+      value: -0.0669862
       inSlope: -0.3647976
       outSlope: -0.3647976
       tangentMode: 0
@@ -264,7 +264,9 @@ MonoBehaviour:
   interactionRange: 2
   swordSlider: {fileID: 9069866086702761315}
   dropParent: {fileID: 495551194917779202}
+  fireRenderer: {fileID: 6393217639416730698}
   debug: 0
+  lightFlicker: {fileID: 2053393889}
 --- !u!135 &7094838535083455700
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -890,7 +892,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34781b49ea5ce2146a91d4357be36846, type: 2}
+  - {fileID: 2100000, guid: 2924e70b75b10a6478708295c006799d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -22,8 +22,10 @@ public class FurnaceStation : Interactable
     int previousLevel = -1;
     Sword inventory;
     bool isHeatingUp;
+    [SerializeField]
+    LightFlicker lightFlicker;
 
-    public int currentHeatLevel
+    public int CurrentHeatLevel
     {
         get
         {
@@ -66,6 +68,18 @@ public class FurnaceStation : Interactable
         fireRenderer.material.SetColor("_FlameColor", frontBot);
 
         fireRenderer.material.SetColor("_ToppingColor", frontTop);
+
+        Gradient gradient = new Gradient
+        {
+            colorKeys = new GradientColorKey[] 
+            {
+                new GradientColorKey(frontBot, 0.0f),
+                new GradientColorKey(frontTop, 0.33f),
+                new GradientColorKey(backBot, 0.66f),
+                new GradientColorKey(backTop, 1.0f)
+            }
+        };
+        lightFlicker.SetLightRange(gradient);
     }
 
     public override void Start()
@@ -86,29 +100,29 @@ public class FurnaceStation : Interactable
             try
             {
                 SetFlameColor(
-                    GameManager.Instance.Settings.BackBotColors[currentHeatLevel],
-                    GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
-                    GameManager.Instance.Settings.FrontBotColors[currentHeatLevel],
-                    GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+                    GameManager.Instance.Settings.BackBotColors[CurrentHeatLevel],
+                    GameManager.Instance.Settings.BackTopColors[CurrentHeatLevel],
+                    GameManager.Instance.Settings.FrontBotColors[CurrentHeatLevel],
+                    GameManager.Instance.Settings.FrontTopColors[CurrentHeatLevel]);
                 currentLerp = 0;
-                previousLevel = currentHeatLevel;
+                previousLevel = CurrentHeatLevel;
             }
             catch
             {
                 Debug.LogError("<b>[FurnaceStation]</b> Something went wrong when trying to set Flame color. Did you assign a renderer and set the Colors in the Settings");
             }
         }
-        if(previousLevel != currentHeatLevel)
+        if(previousLevel != CurrentHeatLevel)
         {
             if(currentLerp < 1)
             {
                 try
                 {
                     SetFlameColor(
-                        Color.Lerp(GameManager.Instance.Settings.BackBotColors[previousLevel], GameManager.Instance.Settings.BackBotColors[currentHeatLevel], currentLerp),
-                        Color.Lerp(GameManager.Instance.Settings.BackTopColors[previousLevel], GameManager.Instance.Settings.BackTopColors[currentHeatLevel], currentLerp),
-                        Color.Lerp(GameManager.Instance.Settings.FrontBotColors[previousLevel], GameManager.Instance.Settings.FrontBotColors[currentHeatLevel], currentLerp),
-                        Color.Lerp(GameManager.Instance.Settings.FrontTopColors[previousLevel], GameManager.Instance.Settings.FrontTopColors[currentHeatLevel], currentLerp));
+                        Color.Lerp(GameManager.Instance.Settings.BackBotColors[previousLevel], GameManager.Instance.Settings.BackBotColors[CurrentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.BackTopColors[previousLevel], GameManager.Instance.Settings.BackTopColors[CurrentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.FrontBotColors[previousLevel], GameManager.Instance.Settings.FrontBotColors[CurrentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.FrontTopColors[previousLevel], GameManager.Instance.Settings.FrontTopColors[CurrentHeatLevel], currentLerp));
                     currentLerp += Time.deltaTime / 2;
                 }
                 catch
@@ -119,12 +133,12 @@ public class FurnaceStation : Interactable
             else
             {
                 SetFlameColor(
-                        GameManager.Instance.Settings.BackBotColors[currentHeatLevel],
-                        GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
-                        GameManager.Instance.Settings.FrontBotColors[currentHeatLevel],
-                        GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+                        GameManager.Instance.Settings.BackBotColors[CurrentHeatLevel],
+                        GameManager.Instance.Settings.BackTopColors[CurrentHeatLevel],
+                        GameManager.Instance.Settings.FrontBotColors[CurrentHeatLevel],
+                        GameManager.Instance.Settings.FrontTopColors[CurrentHeatLevel]);
                 currentLerp = 0;
-                previousLevel = currentHeatLevel;
+                previousLevel = CurrentHeatLevel;
             }
         }
     }
@@ -147,14 +161,14 @@ public class FurnaceStation : Interactable
 
     private void Update()
     {
-        if(currentHeatLevel > 0 && inventory != null)
+        if(CurrentHeatLevel > 0 && inventory != null)
         {
-            inventory.HeatSword(Time.deltaTime * settings.FurnaceMeltingStrength / (9 / currentHeatLevel));
+            inventory.HeatSword(Time.deltaTime * settings.FurnaceMeltingStrength / (9 / CurrentHeatLevel));
             swordSlider.value = inventory.Heat;
         }
         if(settings.FurnaceHeatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
         {
-            currentHeat -= (Time.deltaTime / 4) * settings.FurnaceHeatDropSpeed * 0.01f * (currentHeatLevel + 1) * (currentHeatLevel + 1);
+            currentHeat -= (Time.deltaTime / 4) * settings.FurnaceHeatDropSpeed * 0.01f * (CurrentHeatLevel + 1) * (CurrentHeatLevel + 1);
             UpdateFlames();
         }
         else if(currentHeat < 0)
