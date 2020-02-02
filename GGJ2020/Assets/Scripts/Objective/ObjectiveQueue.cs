@@ -49,6 +49,7 @@ public class ObjectiveQueue
     public void FreeSlot(int index)
     {
         objectives[index] = null;
+        Count--;
     }
 
     public Objective LastObjective()
