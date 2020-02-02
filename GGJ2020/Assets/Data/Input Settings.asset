@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e7e85330be9424ca50fc0f5c2d9910, type: 3}
   m_Name: Input Settings
   m_EditorClassIdentifier: 
-  up: 0
-  down: 0
-  left: 0
-  right: 0
-  interact: 0
-  pause: 0
+  up: 273
+  down: 274
+  left: 276
+  right: 275
+  interact: 32
+  pause: 27
