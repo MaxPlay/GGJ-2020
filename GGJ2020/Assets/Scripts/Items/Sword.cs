@@ -10,6 +10,8 @@ public class Sword : Item
     private float quality;
     private float heat;
 
+    public Customer Owner { get; set; }
+
     bool isHeatingUp;
 
     private const bool debug = false;
@@ -72,8 +74,9 @@ public class Sword : Item
         return true;
     }
 
-    public void Initialize(Objective objective)
+    public void Initialize(Customer owner, Objective objective)
     {
+        Owner = owner;
         hasHandle = !objective.Grip;
         sharpness = objective.Grind ? 0 : 1;
         quality = objective.Smith ? 0 : 1;

@@ -90,7 +90,7 @@ public class Customer : MonoBehaviour
     private void InitializeWaiting()
     {
         Sword sword = Instantiate(GameManager.Instance.Prefabs.Sword, transform.position + trigger.center, Quaternion.identity);
-        sword.Initialize(Objective);
+        sword.Initialize(this, Objective);
         hasSword = false;
         UpdateAnimation(CharacterSpriteManager.CharacterState.Backward);
         waiting = true;

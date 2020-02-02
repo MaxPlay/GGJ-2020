@@ -165,6 +165,13 @@ public class FurnaceStation : Interactable
         {
             inventory.HeatSword(Time.deltaTime * settings.FurnaceMeltingStrength / (9 / CurrentHeatLevel));
             swordSlider.value = inventory.Heat;
+            if(inventory.Heat > GameManager.Instance.Settings.MaximumHeatToMelt)
+            {
+                inventory.Owner.ObjectiveCompleted();
+                Destroy(inventory.gameObject);
+                inventory = null;
+                return;
+            }
         }
         if(settings.FurnaceHeatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
         {
