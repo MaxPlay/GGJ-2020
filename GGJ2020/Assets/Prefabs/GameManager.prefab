@@ -46,3 +46,7 @@ MonoBehaviour:
   gameState: {fileID: 0}
   settings: {fileID: 11400000, guid: 163fcfd10faedb64eacf8d1dff19358f, type: 2}
   prefabs: {fileID: 11400000, guid: 25bbcf2275c8fd14b90c5655570db06e, type: 2}
+  controls:
+    inputTemplate: {fileID: 11400000, guid: 77f9e738a26fedc45a1608da66dc5bda, type: 2}
+    alternativeInputTemplate: {fileID: 11400000, guid: 40edeb8cb12676a47bf932a6d03d0606,
+      type: 2}

@@ -22,7 +22,7 @@ public class Player : Character
 
     PlayerStates currentState;
     PlayerStates previousState;
-    
+
     Vector3 memorizedPosition;
     Interactable currentStation;
 
@@ -76,7 +76,7 @@ public class Player : Character
 
     private void HandleNextState()
     {
-        if(previousState != currentState)
+        if (previousState != currentState)
         {
             enterStates[currentState]();
             exitStates[previousState]();
@@ -162,7 +162,7 @@ public class Player : Character
 
     private void EnterFletchingState()
     {
-        if(debug)
+        if (debug)
             Debug.Log("<b>[Player]</b> Enter Fletching State");
         memorizedPosition = transform.position;
         currentStation.SetProgressbarEnabled(true);
@@ -171,26 +171,26 @@ public class Player : Character
 
     private PlayerStates HandleInteractions()
     {
-        if(Interactable.Instances != null)
+        if (Interactable.Instances != null)
         {
             int currentClosest = -1;
             for (int i = 0; i < Interactable.Instances.Count; i++)
             {
-                if(inventory != Interactable.Instances[i] && Interactable.Instances[i].InteractionRange * Interactable.Instances[i].InteractionRange > Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position))
+                if (inventory != Interactable.Instances[i] && Interactable.Instances[i].InteractionRange * Interactable.Instances[i].InteractionRange > Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position))
                 {
-                    if(currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
+                    if (currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
                     {
                         currentClosest = i;
                     }
                 }
             }
-            if(currentClosest >= 0 && currentClosest < Interactable.Instances.Count && Interactable.Instances[currentClosest])
+            if (currentClosest >= 0 && currentClosest < Interactable.Instances.Count && Interactable.Instances[currentClosest])
             {
                 OnHandleDebug(DebugState.OnInteract, DebugLogStates.NormalLog, Interactable.Instances[currentClosest].name);
                 currentStation = Interactable.Instances[currentClosest].Interact(this);
                 return SwapToNewAction(Interactable.Instances[currentClosest]);
             }
-            else if(currentClosest < 0 && inventory != null)
+            else if (currentClosest < 0 && inventory != null)
             {
                 DropItem();
             }
@@ -200,7 +200,7 @@ public class Player : Character
 
     public Sword PlaceSwordInWorkstation()
     {
-        if(inventory is Sword)
+        if (inventory is Sword)
         {
             Sword sword = inventory as Sword;
             inventory.gameObject.transform.parent = null;
@@ -224,15 +224,15 @@ public class Player : Character
 
     private PlayerStates SwapToNewAction(Interactable interactable)
     {
-        if(interactable is Item)
+        if (interactable is Item)
         {
             return PlayerStates.Default;
         }
-        else if(interactable is FletchingStation && inventory != null && (inventory is Sword || inventory is Wood))
+        else if (interactable is FletchingStation && inventory != null && (inventory is Sword || inventory is Wood))
         {
             return PlayerStates.Fletching;
         }
-        else if(interactable is HeatingStation)
+        else if (interactable is HeatingStation)
         {
             return PlayerStates.Heating;
         }
@@ -240,7 +240,7 @@ public class Player : Character
         {
             return PlayerStates.Smithing;
         }
-        else if(interactable is WoodworkStation && (interactable as WoodworkStation).HasBothItems)
+        else if (interactable is WoodworkStation && (interactable as WoodworkStation).HasBothItems)
         {
             return PlayerStates.Attaching;
         }
@@ -251,27 +251,29 @@ public class Player : Character
     private PlayerStates UpdateDefaultState()
     {
         GameplaySettings settings = GameManager.Instance.Settings;
+        ControlSettings input = GameManager.Instance.Controls.Input;
+        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(input.Interact) || Input.GetKeyDown(alternativeInput.Interact))
         {
             return HandleInteractions();
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(input.Up) || Input.GetKey(alternativeInput.Up))
         {
             Move(Vector2.up * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Backward);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(input.Right) || Input.GetKey(alternativeInput.Right))
         {
             Move(Vector2.right * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Right);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(input.Left) || Input.GetKey(alternativeInput.Left))
         {
             Move(Vector2.left * settings.PlayerSpeeds.x);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Left);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(input.Down) || Input.GetKey(alternativeInput.Down))
         {
             Move(Vector2.down * settings.PlayerSpeeds.y);
             characterSpriteManager.SetState(CharacterSpriteManager.CharacterState.Forward);
@@ -281,11 +283,14 @@ public class Player : Character
 
     private PlayerStates UpdateAttachingState()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        ControlSettings input = GameManager.Instance.Controls.Input;
+        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+
+        if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
             return PlayerStates.Default;
         }
-        if((currentStation as WoodworkStation).WorkOnSword())
+        if ((currentStation as WoodworkStation).WorkOnSword())
         {
             return PlayerStates.Default;
         }
@@ -294,7 +299,10 @@ public class Player : Character
 
     private PlayerStates UpdateSmithingState()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        ControlSettings input = GameManager.Instance.Controls.Input;
+        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+
+        if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
             return PlayerStates.Default;
         }
@@ -308,7 +316,10 @@ public class Player : Character
 
     private PlayerStates UpdateHeatingState()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        ControlSettings input = GameManager.Instance.Controls.Input;
+        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+
+        if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
             return PlayerStates.Default;
         }
@@ -319,7 +330,10 @@ public class Player : Character
 
     private PlayerStates UpdateFletchingState()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
+        ControlSettings input = GameManager.Instance.Controls.Input;
+        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+
+        if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
             return PlayerStates.Default;
         }
@@ -327,11 +341,11 @@ public class Player : Character
         GameplaySettings settings = GameManager.Instance.Settings;
         if (settings.TimeToGrindWeapon > 0)
         {
-            if(inventory is Sword)
+            if (inventory is Sword)
             {
                 currentStation.SetProgressbarValue((inventory as Sword).SharpenSword(Time.deltaTime / settings.TimeToGrindWeapon));
             }
-            else if(inventory is Wood)
+            else if (inventory is Wood)
             {
                 currentStation.SetProgressbarValue((inventory as Wood).WorkOnWood(Time.deltaTime / settings.TimeToGrindWeapon));
             }
@@ -348,7 +362,7 @@ public class Player : Character
                 message += delegator == null ? "Interact With something" : string.Format("Interact with: {0}", delegator);
                 break;
         }
-        switch(logState)
+        switch (logState)
         {
             case DebugLogStates.LogError:
                 Debug.LogError(message);

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public Controls Controls => controls;
+
     public GameplaySettings Settings => settings;
 
     public GameState GameState => gameState;
@@ -27,11 +29,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PrefabContainer prefabs;
 
+    [SerializeField]
+    private Controls controls = new Controls();
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Instance = this;
         Random = new System.Random();
+        controls.Load();
     }
 
     private void Start()
