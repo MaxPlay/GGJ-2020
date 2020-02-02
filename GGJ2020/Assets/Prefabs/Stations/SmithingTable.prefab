@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1751975311288734558}
   - component: {fileID: 1751975311288734557}
   - component: {fileID: 1488055297848962508}
+  - component: {fileID: 2008574271}
   m_Layer: 0
   m_Name: SmithingTable
   m_TagString: Interactable
@@ -184,13 +185,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa3e697d85d3d74f9c1c1e19629a4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  prefabs: {fileID: 0}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 1145873354545501426}
   startWithSlider: 0
+  isCurrentlyInteractable: 1
   interactionRange: 1.9
-  smithingSpeed: 1
   smithingPosition: {fileID: 1751975311196783844}
   debug: 0
+--- !u!95 &2008574271
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751975311288734555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4039f5be1338f8441b584b1bb26f22fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6559007512761072315
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,22 +374,22 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.34799764
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.96279126
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.27024627
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9374954
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}

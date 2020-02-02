@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 734384693581045046}
   - component: {fileID: 734384693581045041}
   - component: {fileID: 734384693581045042}
+  - component: {fileID: 1178600185}
   m_Layer: 0
   m_Name: FledgingStation
   m_TagString: Interactable
@@ -90,12 +91,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667f93674cfbf804e8c64505eda970a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  prefabs: {fileID: 0}
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 734384693404448022}
   startWithSlider: 0
+  isCurrentlyInteractable: 1
   interactionRange: 1.7
   grindingPosition: {fileID: 734384693308361811}
-  timeToGrind: 4
+--- !u!95 &1178600185
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734384693581045043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a54ab32dc2f60a44587cac21706cef7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1140691682402704052
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2926460297659091161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.677, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6399782036406253028}
@@ -535,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7635624519478813920}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6769999, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6399782036406253028}
@@ -736,12 +758,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98824257
+      value: 0.9460368
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.15289438
+      value: 0.32405922
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}

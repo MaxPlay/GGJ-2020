@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 4955930634379137744}
   - component: {fileID: 4955930634379137747}
   - component: {fileID: 9041474641096680914}
+  - component: {fileID: 872413102}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -511,6 +512,7 @@ MonoBehaviour:
   dropPosition: {fileID: 4955930635023200695}
   rb: {fileID: 4955930634379137747}
   characterSpriteManager: {fileID: 6348208443269544760}
+  anim: {fileID: 872413102}
   debug: 1
 --- !u!54 &4955930634379137747
 Rigidbody:
@@ -542,6 +544,25 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!95 &872413102
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955930634379137742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 473ba012935779e46a1c067cb61db3b1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4955930635023200694
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5547429837714497140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.021, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8500643917773784238}

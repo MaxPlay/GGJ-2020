@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 495551194653582947}
   - component: {fileID: 7094838535083455700}
   - component: {fileID: 586555328949552187}
+  - component: {fileID: 958254847}
   m_Layer: 0
   m_Name: FurnaceStation
   m_TagString: Interactable
@@ -261,10 +262,11 @@ MonoBehaviour:
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 959243537232612526}
   startWithSlider: 1
+  isCurrentlyInteractable: 1
   interactionRange: 2
   swordSlider: {fileID: 9069866086702761315}
   dropParent: {fileID: 495551194917779202}
-  fireRenderer: {fileID: 6393217639416730698}
+  fireRenderer: {fileID: 0}
   debug: 0
   lightFlicker: {fileID: 2053393889}
 --- !u!135 &7094838535083455700
@@ -296,6 +298,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!95 &958254847
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495551194653582946}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5152a1986a9fa244aec3c8427e24882, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &495551194917779213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,12 +1082,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9911331
+      value: 0.97599554
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13287309
+      value: 0.21779062
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
@@ -1145,12 +1166,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4347fe994a1fca49b6b5bc78a024804, type: 3}
---- !u!224 &959243537215137483 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
-    type: 3}
-  m_PrefabInstance: {fileID: 1589697260827370567}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &959243537232612526 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1963666015339423977, guid: c4347fe994a1fca49b6b5bc78a024804,
@@ -1163,6 +1178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &959243537215137483 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589697260827370567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7394616952361577866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1203,12 +1224,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9911331
+      value: 0.97599554
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13287309
+      value: 0.21779062
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
@@ -1302,12 +1323,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4347fe994a1fca49b6b5bc78a024804, type: 3}
---- !u!224 &9069866086720941830 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
-    type: 3}
-  m_PrefabInstance: {fileID: 7394616952361577866}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9069866086702761315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1963666015339423977, guid: c4347fe994a1fca49b6b5bc78a024804,
@@ -1320,3 +1335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &9069866086720941830 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
+    type: 3}
+  m_PrefabInstance: {fileID: 7394616952361577866}
+  m_PrefabAsset: {fileID: 0}
