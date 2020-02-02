@@ -180,6 +180,7 @@ public class FurnaceStation : Interactable
             {
                 inventory.Owner.ObjectiveCompleted();
                 Destroy(inventory.gameObject);
+                puffParticles.Play();
                 inventory = null;
                 return;
             }

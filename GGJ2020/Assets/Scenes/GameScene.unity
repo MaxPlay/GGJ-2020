@@ -1201,15 +1201,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 959243537215137483, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9911331
+      objectReference: {fileID: 0}
+    - target: {fileID: 959243537215137483, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13287309
+      objectReference: {fileID: 0}
     - target: {fileID: 959243537785153297, guid: 030bfa9ad1609114b94b9b0d399973d3,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4012818107193040965, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058110128499338057, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058110128499338057, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058110128499338057, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6058110128499338057, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391622491594646628, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: m_LengthScale
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9069866086149975772, guid: 030bfa9ad1609114b94b9b0d399973d3,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069866086720941830, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9911331
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069866086720941830, guid: 030bfa9ad1609114b94b9b0d399973d3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13287309
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 030bfa9ad1609114b94b9b0d399973d3, type: 3}

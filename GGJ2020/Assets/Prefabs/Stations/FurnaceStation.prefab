@@ -266,7 +266,7 @@ MonoBehaviour:
   interactionRange: 2
   swordSlider: {fileID: 9069866086702761315}
   dropParent: {fileID: 495551194917779202}
-  fireRenderer: {fileID: 0}
+  fireRenderer: {fileID: 6393217639416730698}
   debug: 0
   lightFlicker: {fileID: 2053393889}
   anim: {fileID: 958254847}
@@ -5229,11 +5229,11 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 000304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -5569,7 +5569,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -10381,11 +10381,11 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 000304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -10439,7 +10439,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -10506,7 +10506,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.75
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10559,7 +10559,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10675,7 +10675,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.01
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15360,7 +15360,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 4
+  m_LengthScale: 6
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -15699,12 +15699,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98824257
+      value: 0.9911331
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.15289438
+      value: 0.13287309
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
@@ -15841,12 +15841,12 @@ PrefabInstance:
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98824257
+      value: 0.9911331
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.15289438
+      value: 0.13287309
       objectReference: {fileID: 0}
     - target: {fileID: 1963666015322292876, guid: c4347fe994a1fca49b6b5bc78a024804,
         type: 3}
