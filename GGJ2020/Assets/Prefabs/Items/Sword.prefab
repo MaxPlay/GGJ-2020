@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5553220734403016895}
   - component: {fileID: 5553220734403016888}
   - component: {fileID: -6225211379929251328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -112,7 +112,8 @@ MonoBehaviour:
   stationProgressbar: {fileID: 0}
   progressSlider: {fileID: 0}
   startWithSlider: 0
-  interactionRange: 1.68
+  isCurrentlyInteractable: 1
+  interactionRange: 1
 --- !u!54 &-6225211379929251328
 Rigidbody:
   m_ObjectHideFlags: 0
