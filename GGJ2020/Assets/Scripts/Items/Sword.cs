@@ -21,6 +21,13 @@ public class Sword : Item
     public float Quality { get => quality; }
     public float Heat { get => heat; }
 
+    [SerializeField]
+    GameObject iconBroken;
+    [SerializeField]
+    GameObject iconStump;
+    [SerializeField]
+    GameObject iconGrip;
+
     public override Interactable Interact(Character character)
     {
         return base.Interact(character);
@@ -29,7 +36,7 @@ public class Sword : Item
     public float HeatSword(float strength)
     {
         heat += strength;
-        if(strength > 0)
+        if (strength > 0)
             sharpness = Mathf.Clamp01(sharpness - strength);
         if (heat < 0)
             heat = 0;
@@ -49,7 +56,7 @@ public class Sword : Item
 
     public float HammerSword(float strength)
     {
-        if(heat > settings.MinimumHeatToForge)
+        if (heat > settings.MinimumHeatToForge)
         {
             quality = Mathf.Clamp01(quality + strength);
             sharpness = Mathf.Clamp01(sharpness - strength);
@@ -85,11 +92,15 @@ public class Sword : Item
 
     private void Update()
     {
-        if(!isHeatingUp && settings.SwordTimeToAutoCoolDown > 0)
+        if (!isHeatingUp && settings.SwordTimeToAutoCoolDown > 0)
         {
             heat = Mathf.Clamp01(heat - Time.deltaTime / settings.SwordTimeToAutoCoolDown);
         }
         isHeatingUp = true;
+
+        iconStump.SetActive(sharpness < 0.95f);
+        iconGrip.SetActive(!hasHandle);
+        iconBroken.SetActive(quality < 0.95f);
     }
 
     private void OnDrawGizmos()
