@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29fc61cc65fc0ad3817df481ead48ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: e4ec55868e4cf978eb7ce2f6921a2315, type: 3}
   bar: {fileID: 2124271357641317540}
   background: {fileID: 1772607996073161278}
   waitTimeBonus: 0.3
