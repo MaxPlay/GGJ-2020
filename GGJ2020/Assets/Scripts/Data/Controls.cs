@@ -11,14 +11,14 @@ public class Controls
     [SerializeField]
     ControlSettings alternativeInputTemplate;
 
-    ControlSettings input;
-    ControlSettings alternativeInput;
+    private ControlSettingsInstance input;
+    private ControlSettingsInstance alternativeInput;
 
     public string InputFile => Path.Combine(Application.persistentDataPath, "input.duck");
     public string AlternativeInputFile => Path.Combine(Application.persistentDataPath, "alt_input.duck");
 
-    public ControlSettings Input => input;
-    public ControlSettings AlternativeInput => alternativeInput;
+    public ControlSettingsInstance Input => input;
+    public ControlSettingsInstance AlternativeInput => alternativeInput;
 
     public void Load()
     {
@@ -26,21 +26,24 @@ public class Controls
         LoadData(AlternativeInputFile, ref alternativeInput, alternativeInputTemplate);
     }
 
-    private void LoadData(string inputFile, ref ControlSettings input, ControlSettings template)
+    private void LoadData(string inputFile, ref ControlSettingsInstance input, ControlSettings template)
     {
         if (File.Exists(inputFile))
         {
-            input = JsonUtility.FromJson<ControlSettings>(File.ReadAllText(inputFile));
+            string json = File.ReadAllText(inputFile);
+            input = JsonUtility.FromJson<ControlSettingsInstance>(json);
         }
         else
         {
-            input = ScriptableObject.CreateInstance<ControlSettings>();
-            input.Down = template.Down;
-            input.Right = template.Right;
-            input.Up = template.Up;
-            input.Left = template.Left;
-            input.Interact = template.Interact;
-            input.Pause = template.Pause;
+            input = new ControlSettingsInstance
+            {
+                Down = template.Down,
+                Right = template.Right,
+                Up = template.Up,
+                Left = template.Left,
+                Interact = template.Interact,
+                Pause = template.Pause
+            };
             File.WriteAllText(inputFile, JsonUtility.ToJson(input));
         }
     }

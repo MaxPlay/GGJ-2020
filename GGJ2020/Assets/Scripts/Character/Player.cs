@@ -251,8 +251,8 @@ public class Player : Character
     private PlayerStates UpdateDefaultState()
     {
         GameplaySettings settings = GameManager.Instance.Settings;
-        ControlSettings input = GameManager.Instance.Controls.Input;
-        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+        ControlSettingsInstance input = GameManager.Instance.Controls.Input;
+        ControlSettingsInstance alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
         if (Input.GetKeyDown(input.Interact) || Input.GetKeyDown(alternativeInput.Interact))
         {
@@ -283,8 +283,8 @@ public class Player : Character
 
     private PlayerStates UpdateAttachingState()
     {
-        ControlSettings input = GameManager.Instance.Controls.Input;
-        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+        ControlSettingsInstance input = GameManager.Instance.Controls.Input;
+        ControlSettingsInstance alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
         if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
@@ -299,8 +299,8 @@ public class Player : Character
 
     private PlayerStates UpdateSmithingState()
     {
-        ControlSettings input = GameManager.Instance.Controls.Input;
-        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+        ControlSettingsInstance input = GameManager.Instance.Controls.Input;
+        ControlSettingsInstance alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
         if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
@@ -316,8 +316,8 @@ public class Player : Character
 
     private PlayerStates UpdateHeatingState()
     {
-        ControlSettings input = GameManager.Instance.Controls.Input;
-        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+        ControlSettingsInstance input = GameManager.Instance.Controls.Input;
+        ControlSettingsInstance alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
         if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {
@@ -330,8 +330,8 @@ public class Player : Character
 
     private PlayerStates UpdateFletchingState()
     {
-        ControlSettings input = GameManager.Instance.Controls.Input;
-        ControlSettings alternativeInput = GameManager.Instance.Controls.AlternativeInput;
+        ControlSettingsInstance input = GameManager.Instance.Controls.Input;
+        ControlSettingsInstance alternativeInput = GameManager.Instance.Controls.AlternativeInput;
 
         if (Input.GetKeyUp(input.Interact) || Input.GetKeyUp(alternativeInput.Interact))
         {

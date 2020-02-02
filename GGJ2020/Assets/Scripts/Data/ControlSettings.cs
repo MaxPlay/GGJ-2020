@@ -9,7 +9,6 @@ public class ControlSettings : ScriptableObject
     public KeyCode Up
     {
         get { return up; }
-        set { up = value; }
     }
 
     [SerializeField]
@@ -18,7 +17,6 @@ public class ControlSettings : ScriptableObject
     public KeyCode Down
     {
         get { return down; }
-        set { down = value; }
     }
 
     [SerializeField]
@@ -27,7 +25,6 @@ public class ControlSettings : ScriptableObject
     public KeyCode Left
     {
         get { return left; }
-        set { left = value; }
     }
 
     [SerializeField]
@@ -36,7 +33,6 @@ public class ControlSettings : ScriptableObject
     public KeyCode Right
     {
         get { return right; }
-        set { right = value; }
     }
 
     [SerializeField]
@@ -45,7 +41,6 @@ public class ControlSettings : ScriptableObject
     public KeyCode Interact
     {
         get { return interact; }
-        set { interact = value; }
     }
 
     [SerializeField]
@@ -54,6 +49,5 @@ public class ControlSettings : ScriptableObject
     public KeyCode Pause
     {
         get { return pause; }
-        set { pause = value; }
     }
 }
