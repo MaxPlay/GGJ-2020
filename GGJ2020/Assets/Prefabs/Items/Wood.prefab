@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1124514429340244702}
   - component: {fileID: 1124514429340244701}
   - component: {fileID: 1124514429340244676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   startWithSlider: 0
   isCurrentlyInteractable: 1
-  interactionRange: 1.49
+  interactionRange: 1
 --- !u!1 &1233813315454455214
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 2946932488873640435}
   - component: {fileID: 523185745657428040}
   - component: {fileID: 7876549874913113250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 44155611309349566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 7724925353035354911}
   - component: {fileID: 211280056114338522}
   - component: {fileID: 4339350099591354207}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}

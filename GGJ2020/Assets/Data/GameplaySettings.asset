@@ -26,12 +26,12 @@ MonoBehaviour:
   ratioPointsCustomerSatisfied: 1
   ratioPointsCustomerImpressed: 1
   ratioPointsCustomerDiappointed: 1
-  swordTimeToAutoCoolDown: 30
+  swordTimeToAutoCoolDown: 15
   minimumHeatToForge: 1
   maximumHeatToMelt: 2
   playerSpeeds: {x: 2, y: 2}
   furnaceHeatDropSpeed: 1
-  furnaceMeltingStrength: 1
+  furnaceMeltingStrength: 0.2
   backBotColors:
   - {r: 0.58431375, g: 0.21176471, b: 0, a: 0}
   - {r: 0.8509804, g: 0.23137255, b: 0, a: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0.41568628, g: 0.09411765, b: 0, a: 0}
   - {r: 1, g: 0.39607844, b: 0, a: 0}
-  timeToFullyHeat: 4
+  timeToFullyHeat: 2
   timeToGrindWeapon: 2
   bucketTimeToCooldDown: 5
   timeForSmithing: 3

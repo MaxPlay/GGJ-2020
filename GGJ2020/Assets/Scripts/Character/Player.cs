@@ -38,6 +38,25 @@ public class Player : Character
     Dictionary<PlayerStates, Action> exitStates;
     Dictionary<PlayerStates, Func<PlayerStates>> upgradeStates;
 
+
+[SerializeField]
+private AudioSource audioSource;
+
+[SerializeField]
+private AudioClip takeItem;
+
+[SerializeField]
+private AudioClip dropItem;
+
+[SerializeField]
+private AudioClip smithing;
+
+[SerializeField]
+private AudioClip grinding;
+
+[SerializeField]
+private AudioClip furnace;
+
     private void Awake()
     {
         enterStates = new Dictionary<PlayerStates, Action>()
@@ -127,6 +146,11 @@ public class Player : Character
 
     private void ExitAttachingState()
     {
+
+        //Edit Nico
+        audioSource.clip = dropItem;
+        audioSource.Play ();
+
         if (debug)
             Debug.Log("<b>[Player]</b> Exit Woodworking State");
         transform.position = memorizedPosition;
@@ -136,6 +160,11 @@ public class Player : Character
 
     private void EnterAttachingState()
     {
+
+        //Edit Nico
+        audioSource.clip = takeItem;
+        audioSource.Play ();
+
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Smithing State");
         (currentStation as WoodworkStation).ResetProgress();
@@ -147,6 +176,11 @@ public class Player : Character
 
     private void EnterSmithingState()
     {
+
+        //Edit Nico
+        audioSource.clip = smithing;
+        audioSource.Play ();
+
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Smithing State");
         memorizedPosition = transform.position;
@@ -157,6 +191,11 @@ public class Player : Character
 
     private void EnterHeatingState()
     {
+
+        //Edit Nico
+        audioSource.clip = furnace;
+        audioSource.Play ();
+
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Heating State");
         memorizedPosition = transform.position;
@@ -175,6 +214,11 @@ public class Player : Character
 
     private void EnterFletchingState()
     {
+
+        //Edit Nico
+        audioSource.clip = grinding;
+        audioSource.Play ();
+
         if (debug)
             Debug.Log("<b>[Player]</b> Enter Fletching State");
         memorizedPosition = transform.position;
@@ -194,6 +238,9 @@ public class Player : Character
                 {
                     if (currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
                     {
+                        if (Interactable.Instances[i] is Item && inventory != null)
+                            continue;
+
                         currentClosest = i;
                     }
                 }

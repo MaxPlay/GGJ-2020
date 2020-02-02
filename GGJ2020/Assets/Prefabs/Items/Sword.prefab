@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6872104569322002940}
   - component: {fileID: 3551184384198016390}
   - component: {fileID: 4866637733111000463}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 110036493677677633}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grip Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 5193277190565685127}
   - component: {fileID: 2458261330660566337}
   - component: {fileID: 4215775788042275638}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8551766923900910896}
   - component: {fileID: 2301698930696516272}
   - component: {fileID: 1256162720368935862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 340989855845151368}
   - component: {fileID: 3656280125846567536}
   - component: {fileID: 5440427802957143689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702752524313986337}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 5064725047837298745}
   - component: {fileID: 1616506455355912152}
   - component: {fileID: 8248986034098656057}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 5553220734403016895}
   - component: {fileID: 5553220734403016888}
   - component: {fileID: -6225211379929251328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   startWithSlider: 0
   isCurrentlyInteractable: 1
-  interactionRange: 1.68
+  interactionRange: 1
   iconBroken: {fileID: 6161171568569941662}
   iconStump: {fileID: 6867424371357804437}
   iconGrip: {fileID: 1473074199869185571}
@@ -631,7 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2800673617573259882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Broken Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 7289398853089515554}
   - component: {fileID: 5486459367757873235}
   - component: {fileID: 6195456644809471787}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 6278234046720180950}
   - component: {fileID: 5517629243052880460}
   - component: {fileID: 5416811712060606860}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,7 +851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4231923313162245459}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stumpf Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 8416548157962553186}
   - component: {fileID: 2991855896674807566}
   - component: {fileID: 4363983923647943717}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
