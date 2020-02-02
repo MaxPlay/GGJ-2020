@@ -194,6 +194,9 @@ public class Player : Character
                 {
                     if (currentClosest < 0 || Vector3.SqrMagnitude(transform.position - Interactable.Instances[i].transform.position) < Vector3.SqrMagnitude(transform.position - Interactable.Instances[currentClosest].transform.position))
                     {
+                        if (Interactable.Instances[i] is Item && inventory != null)
+                            continue;
+
                         currentClosest = i;
                     }
                 }
