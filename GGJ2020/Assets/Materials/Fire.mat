@@ -90,9 +90,9 @@ Material:
     - _WaveWith: 0.1
     - _ZWrite: 1
     m_Colors:
-    - _BotColor: {r: 1, g: 0.68598413, b: 0, a: 1}
+    - _BotColor: {r: 1, g: 0.91607976, b: 0.5235849, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlameColor: {r: 1, g: 0.9333334, b: 0, a: 1}
-    - _TopColor: {r: 0.9433962, g: 0.079394735, b: 0, a: 1}
-    - _ToppingColor: {r: 0.5566038, g: 0, b: 0, a: 1}
+    - _FlameColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TopColor: {r: 1, g: 0.6946566, b: 0, a: 1}
+    - _ToppingColor: {r: 1, g: 0.39411944, b: 0, a: 1}

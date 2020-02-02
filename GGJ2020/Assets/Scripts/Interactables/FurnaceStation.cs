@@ -18,6 +18,7 @@ public class FurnaceStation : Interactable
     bool debug = false;
 
     float currentHeat = 0.5f;
+    float currentLerp;
     int previousLevel = -1;
     Sword inventory;
     bool isHeatingUp;
@@ -80,17 +81,50 @@ public class FurnaceStation : Interactable
 
     private void UpdateFlames()
     {
-        if(previousLevel != currentHeatLevel)
+        if(previousLevel == -1)
         {
-            previousLevel = currentHeatLevel;
             try
             {
-                SetFlameColor(GameManager.Instance.Settings.BackBotColors[currentHeatLevel], GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
-                    GameManager.Instance.Settings.FrontBotColors[currentHeatLevel], GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+                SetFlameColor(
+                    GameManager.Instance.Settings.BackBotColors[currentHeatLevel],
+                    GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
+                    GameManager.Instance.Settings.FrontBotColors[currentHeatLevel],
+                    GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+                currentLerp = 0;
+                previousLevel = currentHeatLevel;
             }
             catch
             {
+                Debug.LogError("<b>[FurnaceStation]</b> Something went wrong when trying to set Flame color. Did you assign a renderer and set the Colors in the Settings");
+            }
+        }
+        if(previousLevel != currentHeatLevel)
+        {
+            if(currentLerp < 1)
+            {
+                try
+                {
+                    SetFlameColor(
+                        Color.Lerp(GameManager.Instance.Settings.BackBotColors[previousLevel], GameManager.Instance.Settings.BackBotColors[currentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.BackTopColors[previousLevel], GameManager.Instance.Settings.BackTopColors[currentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.FrontBotColors[previousLevel], GameManager.Instance.Settings.FrontBotColors[currentHeatLevel], currentLerp),
+                        Color.Lerp(GameManager.Instance.Settings.FrontTopColors[previousLevel], GameManager.Instance.Settings.FrontTopColors[currentHeatLevel], currentLerp));
+                    currentLerp += Time.deltaTime / 2;
+                }
+                catch
+                {
 
+                }
+            }
+            else
+            {
+                SetFlameColor(
+                        GameManager.Instance.Settings.BackBotColors[currentHeatLevel],
+                        GameManager.Instance.Settings.BackTopColors[currentHeatLevel],
+                        GameManager.Instance.Settings.FrontBotColors[currentHeatLevel],
+                        GameManager.Instance.Settings.FrontTopColors[currentHeatLevel]);
+                currentLerp = 0;
+                previousLevel = currentHeatLevel;
             }
         }
     }
