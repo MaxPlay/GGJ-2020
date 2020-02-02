@@ -2,124 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class DuckWaitBar : MonoBehaviour {
+public class DuckWaitBar : MonoBehaviour
+{
 
-    private RectTransform rectBar_Green;
-    private RectTransform rectBar_Blue;
-    private RectTransform rectBar_Red;
+    private RectTransform rectBar;
 
     [SerializeField]
-    private Image barGreen;
-    [SerializeField]
-    private Image barBlue;
-    [SerializeField]
-    private Image barRed;
+    private Image bar;
     [SerializeField]
     private Image background;
 
     //inner logic
     private float totalWaitTime;
     [SerializeField]
-    private float waitTimeBonus = 7.0f;
-
+    [Range(0,1)]
+    private float waitTimeBonus = 0.3f;
     [SerializeField]
-    private float waitTimeWarning = 3.0f;
+    [Range(0,1)]
+    private float waitTimeWarning = 0.7f;
 
-    void Start () {
+    void Start()
+    {
 
-        rectBar_Green = barGreen.GetComponent<RectTransform> ();
-        rectBar_Blue = barBlue.GetComponent<RectTransform> ();
-        rectBar_Red = barRed.GetComponent<RectTransform> ();
+        rectBar = bar.GetComponent<RectTransform>();
 
-        rectBar_Green.sizeDelta = new Vector2 (0, 100);
-        rectBar_Blue.sizeDelta = new Vector2 (0, 100);
-        rectBar_Red.sizeDelta = new Vector2 (0, 100);
+        bar.fillAmount = 0;
+        bar.color = Color.green;
 
         totalWaitTime = GameManager.Instance.Settings.WaitTimer;
-
-        EnableGreen ();
-
     }
 
-    public void SetPositionToDuck (Transform duck) {
-
+    public void SetPositionToDuck(Transform duck)
+    {
         Vector3 duckPos = duck.transform.position;
 
-        transform.position = new Vector3 (duckPos.x, duckPos.y + 1, duckPos.z);
+        transform.position = new Vector3(duckPos.x, duckPos.y + 1, duckPos.z);
 
-        //     transform.position = duck.transform.position;
-        // transform.parent = duck.transform;
-
-        EnableAllBars ();
-        EnableGreen ();
+        EnableAllBars();
+        bar.color = Color.green;
     }
 
-    public void SetWaitBar (float timeLeft) {
+    public void SetWaitBar(float timeLeft)
+    {
+        float percentage = 1 - (timeLeft / totalWaitTime);
 
-        float barSize =  (totalWaitTime - timeLeft) * 10;
+        bar.fillAmount = 1 - percentage;
 
-        rectBar_Green.sizeDelta = new Vector2 (barSize, 100);
-        rectBar_Blue.sizeDelta = new Vector2 (barSize, 100);
-        rectBar_Red.sizeDelta = new Vector2 (barSize, 100);
-
-        if (timeLeft < waitTimeBonus) { EnableBlue (); }
-
-        if (timeLeft < waitTimeWarning) { EnableRed (); }
-
-     //   Debug.Log ("SetWaitBar: Setting % to: " + barSize + ", totalWaitTime: " + totalWaitTime + ", time left: " + timeLeft);
-
+        if (percentage < waitTimeBonus)
+        {
+            bar.color = Color.green;
+        }
+        else if (percentage < waitTimeWarning)
+        {
+            bar.color = Color.blue;
+        }
+        else
+        {
+            bar.color = Color.red;
+        }
     }
 
-    public void DisableBars () {
-
-        barGreen.enabled = false;
-        barBlue.enabled = false;
-        barRed.enabled = false;
+    public void DisableBars()
+    {
+        bar.enabled = false;
         background.enabled = false;
     }
 
-    public void EnableAllBars () {
-
-        barGreen.enabled = true;
-        barBlue.enabled = true;
-        barRed.enabled = true;
+    public void EnableAllBars()
+    {
+        bar.enabled = true;
         background.enabled = true;
     }
-
-    public void EnableGreen () {
-
-        // barGreen.SetActive (true);
-        // barBlue.SetActive (false);
-        // barRed.SetActive (false);
-
-        barGreen.enabled = true;
-        barBlue.enabled = false;
-        barRed.enabled = false;
-
-    }
-
-    public void EnableBlue () {
-
-        // barGreen.SetActive (false);
-        // barBlue.SetActive (true);
-        // barRed.SetActive (false);
-
-        barGreen.enabled = false;
-        barBlue.enabled = true;
-        barRed.enabled = false;
-
-    }
-
-    public void EnableRed () {
-
-        // barGreen.SetActive (false);
-        // barBlue.SetActive (false);
-        // barRed.SetActive (true);
-
-        barGreen.enabled = false;
-        barBlue.enabled = false;
-        barRed.enabled = true;
-
-    }
-
 }

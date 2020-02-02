@@ -27,6 +27,14 @@ public class FurnaceStation : Interactable
 
     public Animator anim;
 
+    [Header("Particles")]
+    [SerializeField]
+    ParticleSystem smokeParticles;
+    [SerializeField]
+    ParticleSystem puffParticles;
+    [SerializeField]
+    ParticleSystem sparkParticles;
+    
     public int CurrentHeatLevel
     {
         get
@@ -172,6 +180,7 @@ public class FurnaceStation : Interactable
             {
                 inventory.Owner.ObjectiveCompleted();
                 Destroy(inventory.gameObject);
+                puffParticles.Play();
                 inventory = null;
                 return;
             }
@@ -200,5 +209,10 @@ public class FurnaceStation : Interactable
             Gizmos.color = Color.yellow;
             Gizmos.DrawSphere(dropParent.position, 0.1f);
         }
+    }
+
+    public void SpawnSparks()
+    {
+        sparkParticles.Play();
     }
 }
