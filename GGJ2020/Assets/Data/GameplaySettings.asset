@@ -16,7 +16,16 @@ MonoBehaviour:
   objectiveFrequency: 1
   customerMoveTime: 3
   waitTimer: 10
-  duckReactRange: 1
+  duckReactRange: 2
+  scoreWin: 200
+  scoreLose: 0
+  score: 50
+  secondsPerRound: 10
+  penaltyEndOfRoundPerCustomer: 1
+  customersWithoutPenalty: 2
+  ratioPointsCustomerSatisfied: 1
+  ratioPointsCustomerImpressed: 1
+  ratioPointsCustomerDiappointed: 1
   swordTimeToAutoCoolDown: 30
   minimumHeatToForge: 1
   maximumHeatToMelt: 2
