@@ -51,6 +51,7 @@ public class FurnaceStation : Interactable
     public void HeatFurnace(float strength)
     {
         currentHeat = Mathf.Clamp01(currentHeat + strength);
+        UpdateFlames();
         SetProgressbarValue(currentHeat);
         isHeatingUp = true;
     }
@@ -120,6 +121,7 @@ public class FurnaceStation : Interactable
         if(settings.FurnaceHeatDropSpeed > 0 && currentHeat > 0 && !isHeatingUp)
         {
             currentHeat -= (Time.deltaTime / 4) * settings.FurnaceHeatDropSpeed * 0.01f * (currentHeatLevel + 1) * (currentHeatLevel + 1);
+            UpdateFlames();
         }
         else if(currentHeat < 0)
         {
