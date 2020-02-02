@@ -6,6 +6,13 @@ Our contribution to the GGJ 2020.
 
 ## Installation
 
+Made in Unity 2019.3.0f6.  
+You can just open the repository contents in the Personal Edition (or better).
+
+Only runs on Windows x64.
+
+Go to [releases](https://github.com/MaxPlay/GGJ-2020/releases), download the newest version, unzip it and play it.
+
 ## Team
 
 * [MaxPlay](https://github.com/MaxPlay)
